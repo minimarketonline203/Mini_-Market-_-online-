@@ -1,180 +1,459 @@
-HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mini Market Online | Owned by Hamza Bakari</title>
+<title>MINI MARKET ONLINE</title>
+
 <style>
-body{
+*{
 margin:0;
-font-family:Arial, sans-serif;
-background:#f4f4f4;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+scroll-behavior:smooth;
 }
+
+body{
+background:#f1f5f9;
+color:#222;
+}
+
+/* HEADER */
 header{
-background:linear-gradient(45deg,#ff5f6d,#ffc371);
-padding:20px;
-text-align:center;
-color:white;
-font-size:30px;
-font-weight:bold;
+background:linear-gradient(90deg,#004aad,#008cff);
+padding:15px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
 position:sticky;
 top:0;
 z-index:1000;
+box-shadow:0 2px 10px rgba(0,0,0,0.2);
 }
-.search-bar{
-padding:15px;
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:white;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:10px;
+font-weight:bold;
+transition:0.3s;
+}
+
+nav a:hover{
+color:yellow;
+}
+
+/* HERO SLIDER */
+.hero{
+width:100%;
+height:420px;
+overflow:hidden;
+position:relative;
+}
+
+.slides{
+display:flex;
+width:300%;
+animation:slide 15s infinite;
+}
+
+.slides img{
+width:100%;
+height:420px;
+object-fit:cover;
+}
+
+@keyframes slide{
+0%{margin-left:0;}
+30%{margin-left:0;}
+35%{margin-left:-100%;}
+65%{margin-left:-100%;}
+70%{margin-left:-200%;}
+100%{margin-left:-200%;}
+}
+
+/* SEARCH BAR */
+.search-box{
 text-align:center;
+padding:25px;
 background:white;
 }
-.search-bar input{
-width:85%;
-padding:12px;
-border:1px solid #ccc;
-border-radius:25px;
+
+.search-box input{
+width:70%;
+padding:15px;
+border-radius:30px;
+border:2px solid #008cff;
 font-size:16px;
 }
+
+/* CATEGORY */
 .categories{
-display:flex;
-overflow-x:auto;
-gap:10px;
-padding:15px;
-background:#fff;
-}
-.cat{
-background:#ff5f6d;
-color:white;
-padding:10px 18px;
-border-radius:20px;
-white-space:nowrap;
-font-size:14px;
-}
-.products{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:15px;
-padding:15px;
+gap:20px;
+padding:30px;
+background:#eef6ff;
 }
-.card{
+
+.cat{
 background:white;
+padding:20px;
 border-radius:15px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
-padding:10px;
 text-align:center;
-}
-.card img{
-width:100%;
-height:170px;
-object-fit:cover;
-border-radius:10px;
-}
-.card h3{
-margin:10px 0 5px;
-}
-.price{
-color:green;
-font-size:18px;
 font-weight:bold;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
 }
-.btn{
-display:inline-block;
-margin-top:10px;
-background:#ff0066;
-color:white;
-padding:10px 20px;
-border-radius:8px;
-text-decoration:none;
-}
-.owner{
-background:#222;
-color:white;
+
+/* PRODUCTS */
+.products-title{
 text-align:center;
 padding:20px;
-font-size:15px;
+font-size:30px;
+font-weight:bold;
+color:#004aad;
 }
-.whatsapp{
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+padding:30px;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+text-align:center;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:12px;
+}
+
+.card h3{
+margin:15px 0;
+font-size:22px;
+}
+
+.card p{
+font-size:15px;
+color:#666;
+margin-bottom:15px;
+}
+
+.btn{
+display:inline-block;
+padding:12px 22px;
+background:#25D366;
+color:white;
+text-decoration:none;
+border-radius:10px;
+font-weight:bold;
+}
+
+.btn:hover{
+background:#1db954;
+}
+
+/* OFFER BAR */
+.offer{
+background:#ffcc00;
+padding:15px;
+text-align:center;
+font-weight:bold;
+font-size:18px;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+50%{opacity:0.6;}
+}
+
+/* ABOUT */
+.about{
+padding:40px;
+background:white;
+text-align:center;
+line-height:1.8;
+}
+
+/* WHY US */
+.why{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:30px;
+background:#eef6ff;
+}
+
+.why-box{
+background:white;
+padding:25px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* FLOAT WHATSAPP */
+.float{
 position:fixed;
 bottom:20px;
 right:20px;
-background:green;
+background:#25D366;
 color:white;
-padding:15px;
-border-radius:50%;
-font-size:20px;
+padding:15px 20px;
+border-radius:50px;
 text-decoration:none;
+font-weight:bold;
+box-shadow:0 4px 12px rgba(0,0,0,0.3);
+z-index:1000;
+}
+
+/* FOOTER */
+footer{
+background:#111;
+color:white;
+text-align:center;
+padding:30px;
+line-height:1.8;
 }
 </style>
 </head>
 <body>
+  <header>
+<div class="logo">MINI MARKET ONLINE</div>
+<nav>
+<a href="#">Home</a>
+<a href="#products">Products</a>
+<a href="#about">About</a>
+<a href="https://wa.me/255694120621">WhatsApp</a>
+</nav>
+</header>
 
-<header>MINI MARKET ONLINE</header>
+<section class="hero">
+<div class="slides">
+<img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f" alt="">
+<img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8" alt="">
+<img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c" alt="">
+</div>
+</section>
 
-<div class="search-bar">
-<input type="text" placeholder="Search products here...">
+<section class="search-box">
+<input type="text" placeholder="Search your product here / Tafuta bidhaa hapa...">
+</section>
+
+<section class="categories">
+<div class="cat">👕 Fashion Clothes</div>
+<div class="cat">👟 Shoes Collection</div>
+<div class="cat">⚡ Electric Appliances</div>
+<div class="cat">🪟 Curtains</div>
+<div class="cat">💄 Beauty Products</div>
+<div class="cat">👜 Bags Collection</div>
+</section>
+
+<div class="offer">
+🔥 BIG DISCOUNT AVAILABLE TODAY | PATA OFA KUBWA LEO | ORDER NOW ON WHATSAPP 🔥
 </div>
 
-<div class="categories">
-<div class="cat">Fashion</div>
-<div class="cat">Shoes</div>
-<div class="cat">Electronics</div>
-<div class="cat">Kitchen</div>
-<div class="cat">Beauty</div>
-<div class="cat">Home Items</div>
-<div class="cat">Phones</div>
-</div>
+<div class="products-title" id="products">OUR PRODUCTS / BIDHAA ZETU</div>
 
-<div class="products">
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab">
-<h3>Modern T-Shirt</h3>
-<div class="price">TZS 25,000</div>
-<a href="#" class="btn">Order Now</a>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
-<h3>Quality Sneakers</h3>
-<div class="price">TZS 65,000</div>
-<a href="#" class="btn">Order Now</a>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
-<h3>Smart Phone</h3>
-<div class="price">TZS 320,000</div>
-<a href="#" class="btn">Order Now</a>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1586201375761-83865001e31c">
-<h3>Kitchen Rice Pack</h3>
-<div class="price">TZS 18,000</div>
-<a href="#" class="btn">Order Now</a>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b">
-<h3>Women Fashion Dress</h3>
-<div class="price">TZS 45,000</div>
-<a href="#" class="btn">Order Now</a>
+<section class="products">
+  <div class="card">
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab" alt="">
+<h3>Fashion Clothes / Nguo</h3>
+<p>Men and women quality clothes available.</p>
+<a class="btn" href="https://wa.me/255694120621?text=Nahitaji%20Nguo%20kutoka%20Mini%20Market%20Online">Order Now</a>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e">
-<h3>Headphones</h3>
-<div class="price">TZS 40,000</div>
-<a href="#" class="btn">Order Now</a>
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff" alt="">
+<h3>Shoes Collection / Viatu</h3>
+<p>Official shoes, sneakers and sandals.</p>
+<a class="btn" href="https://wa.me/255694120621?text=Nahitaji%20Viatu%20kutoka%20Mini%20Market%20Online">Order Now</a>
 </div>
 
+<div class="card">
+<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9" alt="">
+<h3>Electric Appliances</h3>
+<p>Modern home electronics and devices.</p>
+<a class="btn" href="https://wa.me/255694120621?text=Nahitaji%20Vifaa%20vya%20Umeme%20kutoka%20Mini%20Market%20Online">Order Now</a>
 </div>
 
-<div class="owner">
-Owned and Managed by <b>Hamza Bakari</b><br>
-Mini Market Online East Africa Shopping Platform
+<div class="card">
+<img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85" alt="">
+<h3>Curtains / Mapazia</h3>
+<p>Luxury curtains for home decoration.</p>
+<a class="btn" href="https://wa.me/255694120621?text=Nahitaji%20Mapazia%20kutoka%20Mini%20Market%20Online">Order Now</a>
 </div>
 
-<a class="whatsapp" href="https://wa.me/255700000000">🛒</a>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1" alt="">
+<h3>Beauty Products</h3>
+<p>All cosmetics and body care products.</p>
+<a class="btn" href="https://wa.me/255694120621?text=Nahitaji%20Bidhaa%20za%20Urembo%20kutoka%20Mini%20Market%20Online">Order Now</a>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3" alt="">
+<h3>Bags Collection / Mikoba</h3>
+<p>Travel bags, school bags and luxury handbags.</p>
+<a class="btn" href="https://wa.me/255694120621?text=Nahitaji%20Mikoba%20kutoka%20Mini%20Market%20Online">Order Now</a>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad" alt="">
+<h3>Kitchen Tools</h3>
+<p>Useful kitchen items and cooking tools.</p>
+<a class="btn" href="https://wa.me/255694120621?text=Nahitaji%20Kitchen%20Tools%20kutoka%20Mini%20Market%20Online">Order Now</a>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348" alt="">
+<h3>Home Decoration</h3>
+<p>Beautiful home interior decoration items.</p>
+<a class="btn" href="https://wa.me/255694120621?text=Nahitaji%20Home%20Decoration%20kutoka%20Mini%20Market%20Online">Order Now</a>
+</div>
+</section>
+  <!-- CONTACT SECTION -->
+<section class="contact">
+<h2>Contact Us / Wasiliana Nasi</h2>
+<p>Mini Market Online Tanzania</p>
+<p>Owner: HAMZA BAKARI KHAMIS</p>
+<p>WhatsApp: +255 694 120 621</p>
+<p>Email: minimarketonline203@gmail.com</p>
+
+<a class="contact-btn" href="https://wa.me/255694120621?text=Hello%20Mini%20Market%20Online%20Nahitaji%20Kuagiza%20Bidhaa">
+Chat With Us On WhatsApp
+</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="footer-box">
+<h3>Mini Market Online</h3>
+<p>Your trusted online shopping partner in Tanzania.</p>
+<p>Duka la kisasa la bidhaa zote kwa urahisi wa kuagiza popote ulipo.</p>
+</div>
+
+<div class="footer-box">
+<h3>Available Products</h3>
+<p>✔ Clothes / Nguo</p>
+<p>✔ Shoes / Viatu</p>
+<p>✔ Electronics</p>
+<p>✔ Curtains / Mapazia</p>
+<p>✔ Beauty Products</p>
+<p>✔ Bags / Mikoba</p>
+<p>✔ Kitchen Tools</p>
+<p>✔ Home Decoration</p>
+</div>
+
+<div class="footer-box">
+<h3>Quick Contact</h3>
+<p>📞 +255 694 120 621</p>
+<p>📧 minimarketonline203@gmail.com</p>
+<p>📍 Tanzania</p>
+</div>
+</footer>
+
+<div class="copy">
+© 2026 Mini Market Online | Designed By HAMZA BAKARI KHAMIS
+</div>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/255694120621?text=Hello%20Mini%20Market%20Online" class="float" target="_blank">💬</a>
+
+<style>
+.contact{
+background:white;
+padding:70px 20px;
+text-align:center;
+}
+.contact h2{
+font-size:38px;
+margin-bottom:20px;
+color:#0a3d62;
+}
+.contact p{
+font-size:20px;
+margin:10px;
+}
+.contact-btn{
+display:inline-block;
+margin-top:25px;
+padding:15px 35px;
+background:#25D366;
+color:white;
+text-decoration:none;
+font-size:20px;
+border-radius:40px;
+font-weight:bold;
+}
+
+footer{
+background:#0a3d62;
+color:white;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+padding:60px 30px;
+}
+.footer-box h3{
+font-size:28px;
+margin-bottom:20px;
+}
+.footer-box p{
+font-size:18px;
+line-height:1.8;
+}
+
+.copy{
+background:#06243a;
+color:white;
+text-align:center;
+padding:20px;
+font-size:18px;
+}
+
+.float{
+position:fixed;
+width:65px;
+height:65px;
+bottom:30px;
+right:30px;
+background:#25D366;
+color:white;
+border-radius:50%;
+text-align:center;
+font-size:35px;
+line-height:65px;
+text-decoration:none;
+box-shadow:0 0 15px rgba(0,0,0,0.4);
+z-index:1000;
+}
+</style>
 
 </body>
 </html>
+  
+  
+  
+  
