@@ -1,4 +1,81 @@
- ;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MINI MARKET ONLINE</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+scroll-behavior:smooth;
+}
+body{
+background:#eef3f9;
+color:#222;
+}
+
+/* HEADER */
+header{
+background:linear-gradient(90deg,#005bea,#00c6fb);
+padding:20px;
+text-align:center;
+color:white;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+header h1{
+font-size:34px;
+margin-bottom:10px;
+}
+.owner{
+font-size:14px;
+margin-bottom:12px;
+}
+nav{
+display:flex;
+justify-content:center;
+gap:12px;
+flex-wrap:wrap;
+}
+nav a{
+color:white;
+text-decoration:none;
+padding:10px 20px;
+background:rgba(255,255,255,0.2);
+border-radius:30px;
+font-weight:bold;
+transition:.3s;
+}
+nav a:hover{
+background:white;
+color:#0077ff;
+}
+
+/* HERO */
+.hero{
+height:320px;
+background:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80') center/cover;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:32px;
+font-weight:bold;
+color:white;
+text-shadow:2px 2px 10px black;
+}
+
+/* SEARCH */
+.search-box{
+padding:25px;
+text-align:center;
+background:white;
 }
 .search-box input{
 width:90%;
@@ -24,6 +101,7 @@ border-radius:22px;
 overflow:hidden;
 box-shadow:0 5px 20px rgba(0,0,0,0.15);
 transition:.4s;
+position:relative;
 }
 .card:hover{
 transform:translateY(-10px);
@@ -43,6 +121,12 @@ padding:0 15px 15px;
 font-size:15px;
 color:#666;
 }
+.price{
+padding:0 15px;
+font-size:20px;
+font-weight:bold;
+color:green;
+}
 .btn{
 display:block;
 margin:15px;
@@ -56,6 +140,18 @@ font-weight:bold;
 }
 .btn:hover{
 background:#0052cc;
+}
+.deleteBtn{
+display:none;
+margin:0 15px 15px;
+padding:10px;
+background:red;
+color:white;
+border:none;
+width:calc(100% - 30px);
+border-radius:25px;
+font-weight:bold;
+cursor:pointer;
 }
 
 /* ABOUT */
@@ -82,8 +178,9 @@ footer{
 background:#0077ff;
 color:white;
 text-align:center;
-padding:20px;
+padding:25px;
 margin-top:30px;
+line-height:1.8;
 }
 
 /* WHATSAPP */
@@ -100,12 +197,59 @@ text-decoration:none;
 box-shadow:0 5px 15px rgba(0,0,0,0.3);
 z-index:999;
 }
+
+/* SECRET ADMIN */
+#adminToggle{
+position:fixed;
+left:10px;
+bottom:20px;
+background:#111;
+color:#111;
+padding:8px;
+border-radius:50%;
+font-size:8px;
+cursor:pointer;
+z-index:999;
+}
+#adminPanel{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:25px;
+width:90%;
+max-width:400px;
+box-shadow:0 5px 30px rgba(0,0,0,0.3);
+border-radius:20px;
+z-index:2000;
+}
+#adminPanel input{
+width:100%;
+padding:12px;
+margin:8px 0;
+border:1px solid #ccc;
+border-radius:10px;
+}
+#adminPanel button{
+width:100%;
+padding:12px;
+background:#0077ff;
+color:white;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
+}
 </style>
 </head>
 <body>
 
 <header>
 <h1>MINI MARKET ONLINE</h1>
+<div class="owner">Owner: HAMZA BAKARI KHAMIS</div>
 <nav>
 <a href="#home">Home</a>
 <a href="#products">Products</a>
@@ -127,43 +271,19 @@ SHOP SMART • SHOP FAST
 <div class="card">
 <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab" alt="">
 <h3>Fashion Clothes / Nguo</h3>
+<div class="price">TZS 25,000</div>
 <p>Quality clothes for men and women available.</p>
 <a class="btn" href="https://wa.me/255694120621?text=Nahitaji Nguo">Order Now</a>
+<button class="deleteBtn" onclick="deleteCard(this)">DELETE PRODUCT</button>
 </div>
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff" alt="">
 <h3>Shoes / Viatu</h3>
+<div class="price">TZS 40,000</div>
 <p>All types of modern shoes available.</p>
 <a class="btn" href="https://wa.me/255694120621?text=Nahitaji Viatu">Order Now</a>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4" alt="">
-<h3>Electric Items / Umeme</h3>
-<p>All electronics and electric home devices.</p>
-<a class="btn" href="https://wa.me/255694120621?text=Nahitaji vifaa vya umeme">Order Now</a>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85" alt="">
-<h3>Curtains / Mapazia</h3>
-<p>Beautiful curtains for home decoration.</p>
-<a class="btn" href="https://wa.me/255694120621?text=Nahitaji Mapazia">Order Now</a>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36" alt="">
-<h3>Home Beauty / Urembo wa Ndani</h3>
-<p>Modern interior decoration materials.</p>
-<a class="btn" href="https://wa.me/255694120621?text=Nahitaji vifaa vya urembo wa ndani">Order Now</a>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3" alt="">
-<h3>Bags / Mikoba</h3>
-<p>Classic handbags and traveling bags available.</p>
-<a class="btn" href="https://wa.me/255694120621?text=Nahitaji Mikoba">Order Now</a>
+<button class="deleteBtn" onclick="deleteCard(this)">DELETE PRODUCT</button>
 </div>
 
 </section>
@@ -171,32 +291,88 @@ SHOP SMART • SHOP FAST
 <section class="about" id="about">
 <h2>ABOUT MINI MARKET ONLINE</h2>
 <p>
-Mini Market Online is your trusted online shopping center where you can get quality products quickly and easily.<br><br>
-Mini Market Online ni soko lako la uhakika mtandaoni kwa kupata bidhaa bora kwa haraka na urahisi. Tunakuletea huduma ya kuagiza kupitia WhatsApp moja kwa moja.
+Mini Market Online is your trusted online shopping center.<br><br>
+Owner: HAMZA BAKARI KHAMIS<br>
+Phone: +255 694 120 621<br>
+Email: hamzabakari203@gmail.com
 </p>
 </section>
 
 <footer>
-© 2026 MINI MARKET ONLINE • ALL RIGHTS RESERVED
+© 2026 MINI MARKET ONLINE • ALL RIGHTS RESERVED<br>
+Owner: HAMZA BAKARI KHAMIS<br>
+Phone: +255 694 120 621<br>
+Email: hamzabakari203@gmail.com
 </footer>
 
 <a class="whatsapp" href="https://wa.me/255694120621?text=Hello Mini Market Online">
 <i class="fab fa-whatsapp"></i>
 </a>
 
+<div id="adminToggle" onclick="openAdmin()">●</div>
+
+<div id="adminPanel">
+<h3>SECRET ADMIN PANEL</h3>
+<input type="text" id="pname" placeholder="Product Name">
+<input type="text" id="pprice" placeholder="Product Price">
+<input type="text" id="pimg" placeholder="Product Image URL">
+<input type="text" id="pdesc" placeholder="Product Description">
+<button onclick="addProduct()">ADD PRODUCT</button>
+</div>
+
 <script>
 function searchProduct() {
 let input = document.getElementById("searchInput").value.toLowerCase();
 let cards = document.getElementsByClassName("card");
-
 for (let i = 0; i < cards.length; i++) {
 let title = cards[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
-
-if (title.indexOf(input) > -1) {
-cards[i].style.display = "block";
-} else {
-cards[i].style.display = "none";
+cards[i].style.display = title.indexOf(input) > -1 ? "block" : "none";
 }
+}
+
+function openAdmin(){
+let pass = prompt("Enter Admin Password");
+if(pass === 'Kilimanjaro12"'){
+document.getElementById("adminPanel").style.display="block";
+let dels = document.getElementsByClassName("deleteBtn");
+for(let i=0;i<dels.length;i++){dels[i].style.display="block";}
+}else{
+alert("Wrong Password");
+}
+}
+
+function addProduct(){
+let name = document.getElementById("pname").value;
+let price = document.getElementById("pprice").value;
+let img = document.getElementById("pimg").value;
+let desc = document.getElementById("pdesc").value;
+
+let product = `
+<div class="card">
+<img src="${img}">
+<h3>${name}</h3>
+<div class="price">${price}</div>
+<p>${desc}</p>
+<a class="btn" href="https://wa.me/255694120621?text=Nahitaji ${name}">Order Now</a>
+<button class="deleteBtn" onclick="deleteCard(this)" style="display:block;">DELETE PRODUCT</button>
+</div>`;
+
+document.getElementById("products").innerHTML += product;
+saveProducts();
+}
+
+function deleteCard(btn){
+btn.parentElement.remove();
+saveProducts();
+}
+
+function saveProducts(){
+localStorage.setItem("productsData", document.getElementById("products").innerHTML);
+}
+
+window.onload = function(){
+if(localStorage.getItem("productsData")){
+document.getElementById("products").innerHTML = localStorage.getItem("productsData");
 }
 }
 </script>
