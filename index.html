@@ -8,30 +8,30 @@ HTML
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#eef3f8}
+body{background:#edf1f5}
 header{
-background:linear-gradient(45deg,#0b2c66,#1c56c9);
+background:linear-gradient(45deg,#0b2c66,#1f56c7);
 color:white;
 text-align:center;
 padding:25px;
 border-bottom-left-radius:25px;
 border-bottom-right-radius:25px;
 }
-header h1{font-size:32px}
+header h1{font-size:34px}
 header p{margin-top:6px;font-size:16px}
 .topbtn{
 display:inline-block;
 margin-top:15px;
-padding:12px 25px;
 background:#25D366;
 color:white;
+padding:12px 24px;
 text-decoration:none;
 border-radius:10px;
 font-weight:bold;
 }
 .section-title{
 text-align:center;
-font-size:28px;
+font-size:30px;
 font-weight:bold;
 margin:25px 0;
 color:#0b2c66;
@@ -47,6 +47,7 @@ background:white;
 border-radius:18px;
 overflow:hidden;
 box-shadow:0 5px 15px rgba(0,0,0,.15);
+position:relative;
 }
 .card img{
 width:100%;
@@ -57,26 +58,21 @@ object-fit:cover;
 padding:12px;
 text-align:center;
 }
-.card-content h3{font-size:19px}
-.card-content p{
-color:#0b2c66;
-font-weight:bold;
-margin:8px 0;
-}
-.order,.del,.edit{
+.card-content h3{font-size:18px}
+.card-content p{font-weight:bold;color:#0b2c66;margin:8px 0}
+.orderbtn,.editbtn,.delbtn{
 display:inline-block;
-margin:4px;
-padding:7px 12px;
-border-radius:7px;
-text-decoration:none;
-color:white;
-font-size:13px;
-cursor:pointer;
+margin:3px;
+padding:7px 10px;
 border:none;
+border-radius:7px;
+font-size:12px;
+color:white;
+cursor:pointer;
 }
-.order{background:#0b2c66}
-.del{background:red}
-.edit{background:orange}
+.orderbtn{background:#0b2c66}
+.editbtn{background:orange}
+.delbtn{background:red}
 .box{
 background:white;
 margin:20px;
@@ -84,28 +80,42 @@ padding:20px;
 border-radius:18px;
 box-shadow:0 5px 15px rgba(0,0,0,.1);
 }
+.box input,.box textarea{
+width:100%;
+padding:12px;
+margin:8px 0;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:15px;
+}
+.uploadbtn{
+width:100%;
+padding:13px;
+background:green;
+color:white;
+border:none;
+border-radius:8px;
+font-size:16px;
+}
 .payment-list{
 display:grid;
 grid-template-columns:repeat(2,1fr);
 gap:10px;
 text-align:center;
 font-weight:bold;
+font-size:18px;
 }
-.box input{
-width:100%;
-padding:12px;
-margin:8px 0;
-border:1px solid #ccc;
-border-radius:8px;
+.multiPreview{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+margin-top:10px;
 }
-.box button.upload{
+.multiPreview img{
 width:100%;
-padding:12px;
-background:green;
-color:white;
-border:none;
+height:80px;
+object-fit:cover;
 border-radius:8px;
-font-size:16px;
 }
 footer{
 background:#0b2c66;
@@ -139,106 +149,143 @@ margin-top:20px;
 <div>CRDB BANK</div>
 <div>NMB BANK</div>
 <div>TPB BANK</div>
-<div>VISA CARD</div>
+<div>VISA / MASTER</div>
 </div>
 </section>
 
 <section class="box">
-<h2 class="section-title" style="font-size:24px;margin:0 0 15px 0">ADMIN PANEL YA BIDHAA</h2>
+<h2 class="section-title" style="font-size:24px;margin:0 0 10px 0">ADMIN PANEL YA BIDHAA</h2>
 <p style="text-align:center;margin-bottom:10px">Password: Kilimanjaro12</p>
-<input type="password" id="pass" placeholder="Weka Password ya Admin">
-<input type="text" id="pname" placeholder="Jina la Bidhaa">
-<input type="text" id="pprice" placeholder="Bei ya Bidhaa">
-<input type="file" id="pimage" multiple>
-<button class="upload" onclick="addProduct()">UPLOAD BIDHAA</button>
+
+<input type="password" id="adminpass" placeholder="Weka Password ya Admin">
+<input type="file" id="multiImages" multiple onchange="previewImages()">
+<div class="multiPreview" id="previewBox"></div>
+<div id="dynamicInputs"></div>
+<button class="uploadbtn" onclick="uploadAllProducts()">SAVE BIDHAA ZOTE</button>
 </section>
 
 <footer>© 2026 MINI MARKET ONLINE | HAMZA BAKARI KHAMIS</footer>
 
 <script>
-let productsData = JSON.parse(localStorage.getItem("hamza_products")) || [
-{name:'Friji',price:'850000',img:'https://picsum.photos/400/300?11'},
-{name:'Television',price:'600000',img:'https://picsum.photos/400/300?12'},
-{name:'Nguo za Kisasa',price:'35000',img:'https://picsum.photos/400/300?13'},
-{name:'Viatu vya Fashion',price:'50000',img:'https://picsum.photos/400/300?14'},
-{name:'Mikoba na Mabegi',price:'45000',img:'https://picsum.photos/400/300?15'},
-{name:'Mapazia na Mashuka',price:'70000',img:'https://picsum.photos/400/300?16'},
-{name:'Vyombo vya Nyumbani',price:'40000',img:'https://picsum.photos/400/300?17'},
-{name:'Rice Cooker',price:'120000',img:'https://picsum.photos/400/300?18'},
-{name:'Blender',price:'90000',img:'https://picsum.photos/400/300?19'}
+let productsData = JSON.parse(localStorage.getItem('hamza_store')) || [
+{name:'Nguo za Kike',price:'25000',img:'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=400&q=80'},
+{name:'Viatu vya Fashion',price:'50000',img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80'},
+{name:'Friji',price:'850000',img:'https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=400&q=80'},
+{name:'Television',price:'600000',img:'https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=400&q=80'},
+{name:'Mapazia',price:'70000',img:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=400&q=80'},
+{name:'Vyombo vya Nyumbani',price:'40000',img:'https://images.unsplash.com/photo-1516594798947-e65505dbb29d?auto=format&fit=crop&w=400&q=80'}
 ];
 
-function saveProducts(){
-localStorage.setItem("hamza_products", JSON.stringify(productsData));
+function saveData(){
+localStorage.setItem('hamza_store',JSON.stringify(productsData));
 }
 
 function renderProducts(){
-let box=document.getElementById("products");
-box.innerHTML='';
+let area=document.getElementById('products');
+area.innerHTML='';
 productsData.forEach((p,index)=>{
-box.innerHTML += `
+area.innerHTML += `
 <div class="card">
 <img src="${p.img}">
 <div class="card-content">
 <h3>${p.name}</h3>
 <p>TZS ${p.price}</p>
-<a href="https://wa.me/255694120621" class="order">AGIZA</a>
-<button class="edit" onclick="editProduct(${index})">BADILI</button>
-<button class="del" onclick="deleteProduct(${index})">FUTA</button>
+<a href="https://wa.me/255694120621" class="orderbtn">AGIZA</a>
+<button class="editbtn" onclick="editProduct(${index})">BADILI</button>
+<button class="delbtn" onclick="deleteProduct(${index})">FUTA</button>
 </div>
 </div>`;
 });
 }
 renderProducts();
 
-function addProduct(){
-let pass=document.getElementById("pass").value.trim();
-if(pass!=="Kilimanjaro12"){alert("Password sio sahihi");return;}
-
-let name=document.getElementById("pname").value;
-let price=document.getElementById("pprice").value;
-let files=document.getElementById("pimage").files;
-
-if(name==''||price==''||files.length==0){alert("Jaza taarifa zote");return;}
+function previewImages(){
+let files=document.getElementById('multiImages').files;
+let preview=document.getElementById('previewBox');
+let dyn=document.getElementById('dynamicInputs');
+preview.innerHTML='';
+dyn.innerHTML='';
 
 for(let i=0;i<files.length;i++){
 let reader=new FileReader();
 reader.onload=function(e){
+preview.innerHTML += `<img src="${e.target.result}">`;
+}
+reader.readAsDataURL(files[i]);
+
+dyn.innerHTML += `
+<input type="text" id="name${i}" placeholder="Jina la Bidhaa ya picha ${i+1}">
+<input type="text" id="price${i}" placeholder="Bei ya Bidhaa ya picha ${i+1}">
+`;
+}
+}
+  HTML
+function uploadAllProducts(){
+let pass=document.getElementById('adminpass').value.trim();
+if(pass!=='Kilimanjaro12'){
+alert('Password sio sahihi');
+return;
+}
+
+let files=document.getElementById('multiImages').files;
+
+if(files.length==0){
+alert('Chagua picha kwanza');
+return;
+}
+
+for(let i=0;i<files.length;i++){
+let pname=document.getElementById('name'+i).value;
+let pprice=document.getElementById('price'+i).value;
+
+if(pname==''||pprice==''){
+alert('Jaza jina na bei kwa picha zote');
+return;
+}
+
+let reader=new FileReader();
+reader.onload=function(e){
 productsData.push({
-name:name+" "+(i+1),
-price:price,
+name:pname,
+price:pprice,
 img:e.target.result
 });
-saveProducts();
+saveData();
 renderProducts();
 }
 reader.readAsDataURL(files[i]);
 }
 
-document.getElementById("pname").value='';
-document.getElementById("pprice").value='';
-document.getElementById("pimage").value='';
+document.getElementById('previewBox').innerHTML='';
+document.getElementById('dynamicInputs').innerHTML='';
+document.getElementById('multiImages').value='';
 }
 
 function deleteProduct(index){
-let pass=prompt("Weka Password Kufuta");
-if(pass!=="Kilimanjaro12"){alert("Password sio sahihi");return;}
+let pass=prompt('Weka Password Kufuta');
+if(pass!=='Kilimanjaro12'){
+alert('Password sio sahihi');
+return;
+}
 productsData.splice(index,1);
-saveProducts();
+saveData();
 renderProducts();
 }
 
 function editProduct(index){
-let pass=prompt("Weka Password Kubadili");
-if(pass!=="Kilimanjaro12"){alert("Password sio sahihi");return;}
+let pass=prompt('Weka Password Kubadili');
+if(pass!=='Kilimanjaro12'){
+alert('Password sio sahihi');
+return;
+}
 
-let newName=prompt("Badili Jina la Bidhaa",productsData[index].name);
-let newPrice=prompt("Badili Bei ya Bidhaa",productsData[index].price);
+let newName=prompt('Badili Jina la Bidhaa',productsData[index].name);
+let newPrice=prompt('Badili Bei ya Bidhaa',productsData[index].price);
 
 if(newName!=null && newPrice!=null){
 productsData[index].name=newName;
 productsData[index].price=newPrice;
-saveProducts();
+saveData();
 renderProducts();
 }
 }
