@@ -1,134 +1,266 @@
-<!DOCTYPE html>
-<html lang="sw">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HAMZA BUSINESS MARKETPLACE PRO 2026</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-body{margin:0;font-family:Arial;background:#f4f7fb;color:#222}
-header{background:#083b8a;color:#fff;padding:20px;text-align:center;font-size:28px;font-weight:bold}
-nav{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;background:#fff;padding:15px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
-nav a{text-decoration:none;color:#083b8a;font-weight:bold}
-section{padding:30px}
-.hero{text-align:center;background:#dcecff}
-input,textarea,select{width:100%;padding:12px;margin:8px 0;border:1px solid #ccc;border-radius:8px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
-.card{background:#fff;padding:15px;border-radius:15px;box-shadow:0 2px 10px rgba(0,0,0,.1);text-align:center}
-.card img{width:100%;height:160px;object-fit:cover;border-radius:10px}
-button,.btn{background:#0a7d2b;color:#fff;padding:10px 15px;border:none;border-radius:8px;text-decoration:none;cursor:pointer;display:inline-block;margin-top:8px}
-.adminbox,.formbox,.paybox{background:#fff;padding:20px;border-radius:15px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
-footer{background:#083b8a;color:#fff;text-align:center;padding:20px}
-.whatsapp{position:fixed;bottom:20px;right:20px;background:green;color:#fff;padding:18px;border-radius:50%;font-size:25px}
-.hidden{display:none}
-</style>
-</head>
-<body>
-<header>HAMZA BUSINESS MARKETPLACE PRO 2026</header>
-<nav>
-<a href="#home">Nyumbani</a>
-<a href="#products">Bidhaa</a>
-<a href="#vendors">Maduka</a>
-<a href="#about">About</a>
-<a href="#order">Toa Oda</a>
-<a href="#settings">Settings</a>
-<a href="#admin">Admin</a>
+[4/27, 9:48 AM] Hamza: import React, { useState, useEffect } from "react";
+import { Search, ShoppingCart, Settings, Globe, Phone, Mail, Store, User, Lock, PlusCircle, Trash2, Menu, X, CreditCard } from "lucide-react";
+
+export default function HamzaBusinessMarketplace() {
+const [language, setLanguage] = useState("sw");
+const [search, setSearch] = useState("");
+const [menuOpen, setMenuOpen] = useState(false);
+const [adminOpen, setAdminOpen] = useState(false);
+const [adminPassword, setAdminPassword] = useState("");
+const [adminLogged, setAdminLogged] = useState(false);
+const [vendors, setVendors] = useState([
+{name:"Amina Fashion", paid:true, expiry:"2026-04-30", products:[
+{name:"Nguo za watoto", price:"25000", image:"https://via.placeholder.com/150"},
+{name:"Viatu vya kike", price:"30000", image:"https://via.placeholder.com/150"}
+]},
+{name:"Juma Electronics", paid:true, expiry:"2026-04-29", products:[
+{name:"Television", price:"450000", image:"https://via.placeholder.com/150"},
+{name:"Blender", price:"65000", image:"https://via.placeholder.com/150"}
+]}
+]);
+
+const [ownerProducts, setOwnerProducts] = useState([
+{name:"Nguo za aina zote", price:"20000", image:"https://via.placeholder.com/150"},
+{name:"Vyombo vya kupikia", price:"35000", image:"https://via.placeholder.com/150"},
+{name:"Viatu vya wakubwa na watoto", price:"40000", image:"https://via.placeholder.com/150"},
+{name:"Mapazia na mashuka", price:"30000", image:"https://via.placeholder.com/150"},
+{name:"Mikanda", price:"15000", image:"https://via.placeholder.com/150"},
+{name:"Fridge", price:"600000", image:"https://via.placeholder.com/150"},
+{name:"Radio", price:"45000", image:"https://via.placeholder.com/150"},
+{name:"Subwoofer", price:"120000", image:"https://via.placeholder.com/150"}
+]);
+
+useEffect(()=>{
+const today = new Date().toISOString().split("T")[0];
+setVendors(prev=>prev.map(v=>({...v, paid: v.expiry >= today })));
+},[]);
+
+const text = {
+sw:{
+title:"HAMZA BUSINESS MARKETPLACE",
+home:"Nyumbani",
+about:"Kuhusu Sisi",
+vendors:"Maduka",
+order:"Toa Oda",
+settings:"Mipangilio",
+search:"Tafuta bidhaa...",
+admin:"Admin Login",
+pay:"Lipa TZS 10,000 Kutangaza Siku 3",
+east:"Tunapokea oda nchi zote za Afrika Mashariki",
+aboutText:"Hii ni marketplace ya kisasa inayomilikiwa na HAMZA BAKARI KHAMIS kwa ajili ya kutangaza na kuuza bidhaa za maduka mbalimbali.",
+contact:"Mmiliki: HAMZA BAKARI KHAMIS | WhatsApp: +255 694 120 621 | Email: hamzabakari@gmail.com",
+quick:"Oda Haraka WhatsApp",
+vendorPay:"Lipia Duka Lako",
+login:"Ingia",
+pass:"Weka Password",
+addVendor:"Ongeza Duka",
+remove:"Futa",
+lang:"English"
+},
+en:{
+title:"HAMZA BUSINESS MARKETPLACE",
+home:"Home",
+about:"About Us",
+vendors:"Stores",
+order:"Quick Order",
+settings:"Settings",
+search:"Search products...",
+admin:"Admin Login",
+pay:"Pay TZS 10,000 Advertise For 3 Days",
+east:"We receive orders across East Africa",
+aboutText:"This is a modern marketplace owned by HAMZA BAKARI KHAMIS for advertising and selling products from multiple stores.",
+contact:"Owner: HAMZA BAKARI KHAMIS | WhatsApp: +255 694 120 621 | Email: hamzabakari@gmail.com",
+quick:"Quick WhatsApp Order",
+vendorPay:"Pay For Your Shop",
+login:"Login",
+pass:"Enter Password",
+addVendor:"Add Store",
+remove:"Delete",
+lang:"Kiswahili"
+}
+};
+
+const t = text[language];
+
+const loginAdmin = ()=>{
+if(adminPassword==="kilimanjaro12"){
+setAdminLogged(true);
+alert("Admin Logged In");
+}else{
+alert("Wrong Password");
+}
+};
+
+const addOwnerProduct = ()=>{
+const n = prompt("Product name");
+const p = prompt("Price");
+const i = prompt("Image URL");
+if(n && p){
+setOwnerProducts([...ownerProducts,{name:n,price:p,image:i || "https://via.placeholder.com/150"}]);
+}
+};
+
+const deleteOwnerProduct = (index)=>{
+setOwnerProducts(ownerProducts.filter((_,i)=>i!==index));
+};
+
+const addVendor = ()=>{
+const n = prompt("Vendor Name");
+if(n){
+const exp = new Date();
+exp.setDate(exp.getDate()+3);
+setVendors([...vendors,{name:n,paid:true,expiry:exp.toISOString().split("T")[0],products:[]}]);
+}
+};
+
+const deleteVendor = (index)=>{
+setVendors(vendors.filter((_,i)=>i!==index));
+};
+
+return (
+<div className="min-h-screen bg-gray-100">
+<header className="bg-blue-900 text-white p-4 flex justify-between items-center">
+<h1 className="text-2xl font-bold">{t.title}</h1>
+<div className="flex gap-3">
+<button onClick={()=>setLanguage(language==="sw"?"en":"sw")}><Globe/></button>
+<button onClick={()=>setMenuOpen(!menuOpen)}>{menuOpen?<X/>:<Menu/>}</button>
+</div>
+</header>
+
+{menuOpen && (
+<nav className="bg-white shadow p-4 flex flex-col gap-3 text-lg">
+<a href="#home">{t.home}</a>
+<a href="#about">{t.about}</a>
+<a href="#vendors">{t.vendors}</a>
+<a href="#order">{t.order}</a>
+<a href="#settings">{t.settings}</a>
+<a href="#admin">{t.admin}</a>
 </nav>
+)}
 
-<section class="hero" id="home">
-<h2>Tunapokea Oda Nchi Zote za Afrika Mashariki</h2>
-<p>Tanzania | Kenya | Uganda | Rwanda | Burundi | Congo</p>
-<input type="text" id="search" placeholder="Tafuta bidhaa..." onkeyup="searchProducts()">
-</section>
-
-<section id="products">
-<h2>Bidhaa Za HAMZA BAKARI KHAMIS</h2>
-<div class="grid" id="productGrid">
-<div class="card"><img src="https://via.placeholder.com/200"><h3>Nguo za aina zote</h3><p>TZS 20,000+</p><a class="btn" href="https://wa.me/255694120621">Oda Haraka</a></div>
-<div class="card"><img src="https://via.placeholder.com/200"><h3>Vyombo vya kupikia na kulia</h3><p>TZS 35,000+</p><a class="btn" href="https://wa.me/255694120621">Oda Haraka</a></div>
-<div class="card"><img src="https://via.placeholder.com/200"><h3>Viatu vya aina zote</h3><p>TZS 40,000+</p><a class="btn" href="https://wa.me/255694120621">Oda Haraka</a></div>
-<div class="card"><img src="https://via.placeholder.com/200"><h3>Mapazia na Mashuka</h3><p>TZS 30,000+</p><a class="btn" href="https://wa.me/255694120621">Oda Haraka</a></div>
-<div class="card"><img src="https://via.placeholder.com/200"><h3>Mikanda</h3><p>TZS 15,000+</p><a class="btn" href="https://wa.me/255694120621">Oda Haraka</a></div>
-<div class="card"><img src="https://via.placeholder.com/200"><h3>TV, Radio, Fridge, Blender, Feni</h3><p>TZS 45,000+</p><a class="btn" href="https://wa.me/255694120621">Oda Haraka</a></div>
+<section id="home" className="p-6 text-center">
+<h2 className="text-3xl font-bold mb-3">{t.east}</h2>
+<div className="flex justify-center items-center gap-2 bg-white p-3 rounded-xl shadow">
+<Search/>
+<input value={search} onChange={(e)=>setSearch(e.target.value)} placeholder={t.search} className="outline-none w-full"/>
 </div>
 </section>
 
-<section id="vendors">
-<h2>Maduka ya Wafanyabiashara Wengine (100+ Slots)</h2>
-<div class="paybox">
-<h3>LIPIA TZS 10,000 KUTANGAZA DUKA LAKO</h3>
-<p>Tangazo litadumu kwa siku 3 tu kisha utalipia tena.</p>
-<p>M-Pesa | TigoPesa | AirtelMoney | HaloPesa | Bank Transfer</p>
-<button onclick="alert('Wasiliana na Admin kuthibitisha malipo: +255694120621')">Lipia Sasa</button>
+<section className="p-6">
+<h2 className="text-2xl font-bold mb-4">OWNER PRODUCTS</h2>
+<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+{ownerProducts.filter(p=>p.name.toLowerCase().includes(search.toLowerCase())).map((p,i)=>(
+<div key={i} className="bg-white rounded-2xl shadow p-3">
+<img src={p.image} className="w-full h-32 object-cover rounded-xl"/>
+<h3 className="font-bold mt-2">{p.name}</h3>
+<p>TZS {p.price}</p>
+<a href='https://wa.me/255694120621' className='bg-green-500 text-white px-3 py-1 rounded-lg inline-block mt-2'>{t.quick}</a>
+{adminLogged && <button onClick={()=>deleteOwnerProduct(i)} className='block mt-2 text-red-600'><Trash2/></button>}
 </div>
-<div class="grid">
-<div class="card"><img src="https://via.placeholder.com/200"><h3>Amina Fashion</h3><p>Shop Active</p></div>
-<div class="card"><img src="https://via.placeholder.com/200"><h3>Juma Electronics</h3><p>Shop Active</p></div>
-<div class="card"><img src="https://via.placeholder.com/200"><h3>Vendor Space Available</h3><p>Jiunge sasa</p></div>
+))}
+</div>
+{adminLogged && <button onClick={addOwnerProduct} className="mt-4 bg-blue-700 text-white px-4 py-2 rounded-xl flex gap-2"><PlusCircle/>Add Product</button>}
+</section>
+[4/27, 9:49 AM] Hamza: <section id="vendors" className="p-6 bg-gray-200">
+<h2 className="text-2xl font-bold mb-4">{t.vendors}</h2>
+
+<div className="mb-6 bg-yellow-100 p-4 rounded-2xl shadow">
+<h3 className="text-xl font-bold mb-2">{t.vendorPay}</h3>
+<p>{t.pay}</p>
+<div className="grid md:grid-cols-5 grid-cols-2 gap-3 mt-4">
+<button className="bg-blue-600 text-white p-2 rounded-xl">M-PESA</button>
+<button className="bg-green-600 text-white p-2 rounded-xl">TIGO PESA</button>
+<button className="bg-red-600 text-white p-2 rounded-xl">AIRTEL MONEY</button>
+<button className="bg-purple-600 text-white p-2 rounded-xl">HALOPESA</button>
+<button className="bg-gray-700 text-white p-2 rounded-xl">BANK TRANSFER</button>
+</div>
+<p className="mt-3">Baada ya malipo shop yako itafunguliwa kwa siku 3.</p>
+</div>
+
+<div className="grid md:grid-cols-3 gap-5">
+{vendors.map((vendor,vi)=> vendor.paid && (
+<div key={vi} className="bg-white rounded-2xl shadow p-4">
+<h3 className="text-xl font-bold flex items-center gap-2"><Store/> {vendor.name}</h3>
+<p>Expiry: {vendor.expiry}</p>
+
+<div className="grid grid-cols-2 gap-3 mt-3">
+{vendor.products.length===0 ? <p>No Products Yet</p> :
+vendor.products.map((prod,pi)=>(
+<div key={pi} className="border rounded-xl p-2">
+<img src={prod.image} className="w-full h-24 object-cover rounded-lg"/>
+<p>{prod.name}</p>
+<p>TZS {prod.price}</p>
+<a href='https://wa.me/255694120621' className='bg-green-500 text-white px-2 py-1 rounded-lg inline-block mt-1'>Order</a>
+</div>
+))
+}
+</div>
+
+{adminLogged && <button onClick={()=>deleteVendor(vi)} className="mt-3 text-red-600 flex gap-2"><Trash2/>{t.remove}</button>}
+</div>
+))}
+</div>
+
+{adminLogged && <button onClick={addVendor} className="mt-5 bg-blue-700 text-white px-4 py-2 rounded-xl flex gap-2"><PlusCircle/>{t.addVendor}</button>}
+</section>
+
+<section id="about" className="p-6 bg-white">
+<h2 className="text-2xl font-bold mb-3">{t.about}</h2>
+<p className="text-lg">{t.aboutText}</p>
+<p className="mt-4 font-bold">{t.contact}</p>
+</section>
+
+<section id="order" className="p-6 bg-gray-100">
+<h2 className="text-2xl font-bold mb-4">{t.order}</h2>
+<div className="bg-white p-5 rounded-2xl shadow flex flex-col gap-3">
+<input placeholder="Jina lako" className="p-3 border rounded-xl"/>
+<input placeholder="Namba yako" className="p-3 border rounded-xl"/>
+<input placeholder="Bidhaa unayotaka" className="p-3 border rounded-xl"/>
+<textarea placeholder="Maelezo ya oda..." className="p-3 border rounded-xl"></textarea>
+<a href="https://wa.me/255694120621" className="bg-green-600 text-white text-center p-3 rounded-xl">Tuma Oda WhatsApp</a>
 </div>
 </section>
 
-<section id="about">
-<h2>Kuhusu Sisi</h2>
-<p>Hii ni marketplace kubwa ya biashara mtandaoni inayomilikiwa na HAMZA BAKARI KHAMIS. Wafanyabiashara wanaweza kutangaza maduka yao na bidhaa zao baada ya kulipa TZS 10,000 kwa siku 3.</p>
-<p><b>Owner:</b> HAMZA BAKARI KHAMIS</p>
-<p><b>WhatsApp:</b> +255 694 120 621</p>
-<p><b>Email:</b> hamzabakari@gmail.com</p>
-</section>
-
-<section id="order">
-<h2>Toa Oda Haraka</h2>
-<div class="formbox">
-<input placeholder="Jina lako">
-<input placeholder="Namba yako">
-<input placeholder="Bidhaa unayotaka">
-<textarea placeholder="Maelezo ya oda"></textarea>
-<button onclick="window.location.href='https://wa.me/255694120621'">Tuma Oda WhatsApp</button>
+<section id="settings" className="p-6 bg-white">
+<h2 className="text-2xl font-bold mb-4 flex gap-2"><Settings/> {t.settings}</h2>
+<div className="grid md:grid-cols-3 gap-4">
+<div className="bg-gray-100 p-4 rounded-2xl shadow">Language Switch</div>
+<div className="bg-gray-100 p-4 rounded-2xl shadow">Notifications</div>
+<div className="bg-gray-100 p-4 rounded-2xl shadow">Dark / Light Mode</div>
 </div>
 </section>
 
-<section id="settings">
-<h2>Settings</h2>
-<div class="grid">
-<div class="card">Language: Kiswahili / English</div>
-<div class="card">Dark / Light Mode</div>
-<div class="card">Notifications</div>
+<section id="admin" className="p-6 bg-gray-200">
+<h2 className="text-2xl font-bold mb-4 flex gap-2"><Lock/> {t.admin}</h2>
+
+{!adminLogged ? (
+<div className="bg-white p-5 rounded-2xl shadow flex flex-col gap-3 md:w-1/2">
+<input
+type="password"
+value={adminPassword}
+onChange={(e)=>setAdminPassword(e.target.value)}
+placeholder={t.pass}
+className="p-3 border rounded-xl"
+/>
+<button onClick={loginAdmin} className="bg-blue-700 text-white p-3 rounded-xl">{t.login}</button>
 </div>
+):(
+<div className="bg-green-100 p-5 rounded-2xl shadow text-xl font-bold">
+ADMIN PANEL OPENED SUCCESSFULLY
+</div>
+)}
 </section>
 
-<section id="admin">
-<h2>Admin Password Protected</h2>
-<div class="adminbox">
-<input type="password" id="pass" placeholder="Weka Password">
-<button onclick="loginAdmin()">Ingia Admin</button>
-<div id="panel" class="hidden">
-<h3>Karibu Admin Hamza</h3>
-<button onclick="alert('Ongeza Duka Mpya')">Ongeza Duka</button>
-<button onclick="alert('Futa Duka Lililoisha')">Futa Duka</button>
-<button onclick="alert('Ongeza Bidhaa')">Ongeza Bidhaa</button>
-<button onclick="alert('Futa Bidhaa')">Futa Bidhaa</button>
-<button onclick="alert('Angalia Malipo ya Vendors')">Angalia Malipo</button>
-</div>
-</div>
-</section>
-
-<footer>
-HAMZA BAKARI KHAMIS | WhatsApp +255694120621 | Email: hamzabakari@gmail.com
+<footer className="bg-blue-900 text-white p-6 mt-10 text-center">
+<p>{t.contact}</p>
+<p>Email: hamzabakari@gmail.com</p>
+<p>East Africa Online Delivery Marketplace 2026</p>
 </footer>
-<a class="whatsapp" href="https://wa.me/255694120621"><i class="fab fa-whatsapp"></i></a>
 
-<script>
-function loginAdmin(){
- if(document.getElementById('pass').value==='kilimanjaro12'){
-   document.getElementById('panel').classList.remove('hidden');
-   alert('Admin Login Successful');
- } else { alert('Password sio sahihi');}
+<a href="https://wa.me/255694120621" className="fixed bottom-5 right-5 bg-green-500 text-white p-4 rounded-full shadow-2xl">
+<Phone/>
+</a>
+
+</div>
+);
 }
-function searchProducts(){
- let input=document.getElementById('search').value.toLowerCase();
- let cards=document.querySelectorAll('#productGrid .card');
- cards.forEach(c=>{c.style.display=c.innerText.toLowerCase().includes(input)?'block':'none';});
-}
-</script>
-</body>
-</html>
