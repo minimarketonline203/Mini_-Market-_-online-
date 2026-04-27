@@ -1,1 +1,101 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MINI MARKET ONLINE</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#eef2f7}
+header{background:linear-gradient(45deg,#0b2c66,#1346a0);color:#fff;padding:25px;text-align:center;border-bottom-left-radius:25px;border-bottom-right-radius:25px}
+header h1{font-size:32px}
+header p{margin-top:6px}
+.btn{display:inline-block;margin-top:15px;background:#25D366;color:#fff;padding:12px 25px;border-radius:10px;text-decoration:none}
+.section-title{text-align:center;font-size:28px;margin:25px 0;font-weight:bold;color:#0b2c66}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;padding:15px}
+.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,.15)}
+.card img{width:100%;height:180px;object-fit:cover}
+.card-content{padding:12px;text-align:center}
+.card-content h3{font-size:20px}
+.card-content p{color:#0b2c66;font-weight:bold;margin:8px 0}
+.order{background:#0b2c66;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;display:inline-block}
+.payment,.admin{background:#fff;margin:20px;padding:20px;border-radius:18px;box-shadow:0 5px 15px rgba(0,0,0,.1)}
+.payment-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;text-align:center;font-weight:bold}
+.admin input{width:100%;padding:12px;margin:8px 0;border:1px solid #ccc;border-radius:8px}
+.admin button{width:100%;padding:12px;background:green;color:#fff;border:none;border-radius:8px}
+footer{background:#0b2c66;color:#fff;text-align:center;padding:20px;margin-top:20px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>MINI MARKET ONLINE</h1>
+<p>Owner: HAMZA BAKARI KHAMIS</p>
+<p>Email: hamzabakari203@gmail.com</p>
+<p>WhatsApp: +255 694 120 621</p>
+<a href="https://wa.me/255694120621" class="btn">TOA ODA SASA</a>
+</header>
+
+<div class="section-title">BIDHAA ZETU</div>
+<section class="products" id="products"></section>
+
+<section class="payment">
+<h2 class="section-title" style="margin:0 0 15px 0;font-size:24px">NJIA ZA MALIPO</h2>
+<div class="payment-list">
+<div>M-PESA</div>
+<div>TIGO PESA</div>
+<div>AIRTEL MONEY</div>
+<div>HALOPESA</div>
+<div>CRDB BANK</div>
+<div>NMB BANK</div>
+</div>
+</section>
+
+<section class="admin">
+<h2 class="section-title" style="margin:0 0 15px 0;font-size:24px">UPLOAD BIDHAA MPYA</h2>
+<p style="text-align:center;margin-bottom:10px">Password: Kilimanjaro12</p>
+<input type="password" id="pass" placeholder="Weka Password ya Admin">
+<input type="text" id="pname" placeholder="Jina la Bidhaa">
+<input type="text" id="pprice" placeholder="Bei ya Bidhaa">
+<input type="file" id="pimage">
+<button onclick="addProduct()">UPLOAD BIDHAA</button>
+</section>
+
+<footer>© 2026 MINI MARKET ONLINE | HAMZA BAKARI KHAMIS</footer>
+
+<script>
+let defaultProducts=[
+['Friji','850000','https://picsum.photos/400/300?11'],
+['Television','600000','https://picsum.photos/400/300?12'],
+['Nguo za Kisasa','35000','https://picsum.photos/400/300?13'],
+['Viatu','50000','https://picsum.photos/400/300?14'],
+['Mikoba','45000','https://picsum.photos/400/300?15'],
+['Mapazia','70000','https://picsum.photos/400/300?16']
+];
+
+function loadDefaults(){
+let products=document.getElementById('products');
+defaultProducts.forEach(function(p){
+products.innerHTML += '<div class=\"card\"><img src=\"'+p[2]+'\"><div class=\"card-content\"><h3>'+p[0]+'</h3><p>TZS '+p[1]+'</p><a class=\"order\" href=\"https://wa.me/255694120621\">AGIZA</a></div></div>';
+});
+}
+loadDefaults();
+
+function addProduct(){
+if(document.getElementById('pass').value!=='Kilimanjaro12'){alert('Password sio sahihi');return;}
+let name=document.getElementById('pname').value;
+let price=document.getElementById('pprice').value;
+let image=document.getElementById('pimage').files[0];
+if(name==''||price==''||!image){alert('Jaza taarifa zote');return;}
+let reader=new FileReader();
+reader.onload=function(e){
+document.getElementById('products').innerHTML += '<div class=\"card\"><img src=\"'+e.target.result+'\"><div class=\"card-content\"><h3>'+name+'</h3><p>TZS '+price+'</p><a class=\"order\" href=\"https://wa.me/255694120621\">AGIZA</a></div></div>';
+}
+reader.readAsDataURL(image);
+}
+</script>
+
+</body>
+</html>
