@@ -1,1 +1,381 @@
 
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MINI MARKET ONLINE</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#edf2f7}
+header{
+background:linear-gradient(45deg,#0b2c66,#1f56c7);
+padding:25px;
+text-align:center;
+color:white;
+border-bottom-left-radius:25px;
+border-bottom-right-radius:25px;
+}
+header h1{font-size:32px}
+header p{margin-top:6px}
+.topbtn{
+display:inline-block;
+margin-top:15px;
+background:#25D366;
+padding:12px 24px;
+color:white;
+text-decoration:none;
+border-radius:10px;
+font-weight:bold;
+}
+.section-title{
+text-align:center;
+font-size:28px;
+font-weight:bold;
+margin:25px 0;
+color:#0b2c66;
+}
+.albums{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:15px;
+padding:15px;
+}
+.album{
+background:white;
+border-radius:18px;
+padding:20px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+cursor:pointer;
+font-weight:bold;
+font-size:18px;
+}
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+padding:15px;
+}
+.card{
+background:white;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+.card img{
+width:100%;
+height:190px;
+object-fit:cover;
+}
+.card-content{
+padding:12px;
+text-align:center;
+}
+.card-content h3{font-size:18px}
+.card-content p{font-weight:bold;color:#0b2c66;margin:8px 0}
+.orderbtn,.editbtn,.delbtn,.paybtn{
+display:inline-block;
+margin:3px;
+padding:7px 10px;
+border:none;
+border-radius:7px;
+font-size:12px;
+color:white;
+cursor:pointer;
+}
+.orderbtn{background:#0b2c66}
+.editbtn{background:orange}
+.delbtn{background:red}
+.paybtn{background:green}
+.box{
+background:white;
+margin:20px;
+padding:20px;
+border-radius:18px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+.box input,.box select{
+width:100%;
+padding:12px;
+margin:8px 0;
+border:1px solid #ccc;
+border-radius:8px;
+}
+.uploadbtn{
+width:100%;
+padding:13px;
+background:green;
+color:white;
+border:none;
+border-radius:8px;
+font-size:16px;
+}
+.preview{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+margin-top:10px;
+}
+.preview img{
+width:100%;
+height:80px;
+object-fit:cover;
+border-radius:8px;
+}
+.paymentArea{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+.paymentArea button{
+padding:12px;
+background:#0b2c66;
+color:white;
+border:none;
+border-radius:10px;
+font-weight:bold;
+}
+footer{
+background:#0b2c66;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>MINI MARKET ONLINE</h1>
+<p>Owner: HAMZA BAKARI KHAMIS</p>
+<p>Email: hamzabakari203@gmail.com</p>
+<p>WhatsApp: +255 694 120 621</p>
+<a href="https://wa.me/255694120621" class="topbtn">TOA ODA SASA</a>
+</header>
+
+<div class="section-title">ALBUM ZA BIDHAA</div>
+<section class="albums" id="albumArea"></section>
+
+<div class="section-title" id="albumTitle">BIDHAA ZA ALBUM</div>
+<section class="products" id="products"></section>
+
+<section class="box">
+<h2 class="section-title" style="font-size:24px;margin:0 0 10px 0">CHAGUA NJIA YA MALIPO</h2>
+<div class="paymentArea">
+<button onclick="payNow('M-PESA')">M-PESA</button>
+<button onclick="payNow('TIGO PESA')">TIGO PESA</button>
+<button onclick="payNow('AIRTEL MONEY')">AIRTEL MONEY</button>
+<button onclick="payNow('HALOPESA')">HALOPESA</button>
+</div>
+</section>
+
+<section class="box">
+<h2 class="section-title" style="font-size:24px;margin:0 0 10px 0">ADMIN PANEL</h2>
+<p style="text-align:center">Password: Kilimanjaro12</p>
+
+<input type="password" id="adminpass" placeholder="Weka Password">
+
+<select id="albumSelect">
+<option value="">Chagua Album</option>
+<option>Dress</option>
+<option>Viatu</option>
+<option>Mikoba</option>
+<option>Fridge</option>
+<option>Television</option>
+<option>Mapazia</option>
+<option>Vyombo</option>
+</select>
+
+<input type="file" id="multiImages" multiple onchange="previewImages()">
+<div class="preview" id="previewBox"></div>
+<div id="dynamicInputs"></div>
+<button class="uploadbtn" onclick="uploadProducts()">SAVE PRODUCTS</button>
+</section>
+
+<footer>© 2026 MINI MARKET ONLINE | HAMZA BAKARI KHAMIS</footer>
+
+<script>
+let allProducts = JSON.parse(localStorage.getItem('hamza_album_shop')) || [
+{album:'Dress',name:'Dress ya Kike',price:'25000',img:'https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=400&q=80'},
+{album:'Viatu',name:'Viatu vya Fashion',price:'50000',img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80'},
+{album:'Fridge',name:'Fridge kubwa',price:'850000',img:'https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=400&q=80'},
+{album:'Television',name:'Smart TV',price:'600000',img:'https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=400&q=80'}
+];
+
+let currentAlbum='Dress';
+
+function saveStore(){
+localStorage.setItem('hamza_album_shop',JSON.stringify(allProducts));
+}
+
+function showAlbums(){
+let albums=['Dress','Viatu','Mikoba','Fridge','Television','Mapazia','Vyombo'];
+let area=document.getElementById('albumArea');
+area.innerHTML='';
+albums.forEach(a=>{
+area.innerHTML += `<div class="album" onclick="openAlbum('${a}')">${a} COLLECTION</div>`;
+});
+}
+showAlbums();
+
+function openAlbum(name){
+currentAlbum=name;
+document.getElementById('albumTitle').innerText=name.toUpperCase()+' COLLECTION';
+renderProducts();
+}
+
+function renderProducts(){
+let area=document.getElementById('products');
+area.innerHTML='';
+let filtered=allProducts.filter(p=>p.album===currentAlbum);
+
+filtered.forEach((p,index)=>{
+let realIndex=allProducts.indexOf(p);
+area.innerHTML += `
+<div class="card">
+<img src="${p.img}">
+<div class="card-content">
+<h3>${p.name}</h3>
+<p>TZS ${p.price}</p>
+<a href="https://wa.me/255694120621" class="orderbtn">AGIZA</a>
+<button class="paybtn" onclick="payNow('DIRECT PAYMENT')">LIPA</button>
+<button class="editbtn" onclick="editProduct(${realIndex})">BADILI</button>
+<button class="delbtn" onclick="deleteProduct(${realIndex})">FUTA</button>
+</div>
+</div>`;
+});
+}
+openAlbum('Dress');
+
+function previewImages(){
+let files=document.getElementById('multiImages').files;
+let preview=document.getElementById('previewBox');
+let dyn=document.getElementById('dynamicInputs');
+preview.innerHTML='';
+dyn.innerHTML='';
+
+for(let i=0;i<files.length;i++){
+let reader=new FileReader();
+reader.onload=function(e){
+preview.innerHTML += `<img src="${e.target.result}">`;
+}
+reader.readAsDataURL(files[i]);
+
+dyn.innerHTML += `
+<input type="text" id="name${i}" placeholder="Jina la bidhaa ${i+1}">
+<input type="text" id="price${i}" placeholder="Bei ya bidhaa ${i+1}">
+`;
+}
+}
+  HTML
+function uploadProducts(){
+let pass=document.getElementById('adminpass').value.trim();
+if(pass!=='Kilimanjaro12'){
+alert('Password sio sahihi');
+return;
+}
+
+let album=document.getElementById('albumSelect').value;
+if(album===''){
+alert('Chagua album kwanza');
+return;
+}
+
+let files=document.getElementById('multiImages').files;
+if(files.length===0){
+alert('Chagua picha kwanza');
+return;
+}
+
+for(let i=0;i<files.length;i++){
+let pname=document.getElementById('name'+i).value;
+let pprice=document.getElementById('price'+i).value;
+
+if(pname===''||pprice===''){
+alert('Jaza jina na bei kwa picha zote');
+return;
+}
+
+let reader=new FileReader();
+reader.onload=function(e){
+allProducts.push({
+album:album,
+name:pname,
+price:pprice,
+img:e.target.result
+});
+saveStore();
+if(currentAlbum===album){renderProducts();}
+}
+reader.readAsDataURL(files[i]);
+}
+
+document.getElementById('previewBox').innerHTML='';
+document.getElementById('dynamicInputs').innerHTML='';
+document.getElementById('multiImages').value='';
+document.getElementById('albumSelect').value='';
+}
+
+function deleteProduct(index){
+let pass=prompt('Weka Password Kufuta');
+if(pass!=='Kilimanjaro12'){
+alert('Password sio sahihi');
+return;
+}
+allProducts.splice(index,1);
+saveStore();
+renderProducts();
+}
+
+function editProduct(index){
+let pass=prompt('Weka Password Kubadili');
+if(pass!=='Kilimanjaro12'){
+alert('Password sio sahihi');
+return;
+}
+
+let newName=prompt('Badili Jina la Bidhaa',allProducts[index].name);
+let newPrice=prompt('Badili Bei ya Bidhaa',allProducts[index].price);
+
+if(newName!=null && newPrice!=null){
+allProducts[index].name=newName;
+allProducts[index].price=newPrice;
+saveStore();
+renderProducts();
+}
+}
+
+function payNow(method){
+alert('Fanya malipo kwa '+method+' kwenda LIPA NAMBA 0694 120 621 kisha tuma uthibitisho WhatsApp.');
+window.location.href='https://wa.me/255694120621?text=Nimetuma malipo kupitia '+method;
+  }
+  HTML
+function addNewAlbum(){
+let pass=prompt('Weka Password Kuongeza Album Mpya');
+if(pass!=='Kilimanjaro12'){
+alert('Password sio sahihi');
+return;
+}
+
+let newAlbum=prompt('Andika Jina la Album Mpya');
+if(newAlbum && newAlbum.trim()!==''){
+let area=document.getElementById('albumArea');
+area.innerHTML += `<div class="album" onclick="openAlbum('${newAlbum}')">${newAlbum} COLLECTION</div>`;
+
+let select=document.getElementById('albumSelect');
+let opt=document.createElement('option');
+opt.text=newAlbum;
+opt.value=newAlbum;
+select.add(opt);
+}
+}
+
+document.getElementById('albumArea').innerHTML += `<div class="album" onclick="addNewAlbum()">+ ONGEZA ALBUM</div>`;
+</script>
+
+</body>
+</html>
