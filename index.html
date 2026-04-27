@@ -1,4 +1,4 @@
-
+HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,24 +8,112 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#eef2f7}
-header{background:linear-gradient(45deg,#0b2c66,#1346a0);color:#fff;padding:25px;text-align:center;border-bottom-left-radius:25px;border-bottom-right-radius:25px}
+body{background:#eef3f8}
+header{
+background:linear-gradient(45deg,#0b2c66,#1c56c9);
+color:white;
+text-align:center;
+padding:25px;
+border-bottom-left-radius:25px;
+border-bottom-right-radius:25px;
+}
 header h1{font-size:32px}
-header p{margin-top:6px}
-.btn{display:inline-block;margin-top:15px;background:#25D366;color:#fff;padding:12px 25px;border-radius:10px;text-decoration:none}
-.section-title{text-align:center;font-size:28px;margin:25px 0;font-weight:bold;color:#0b2c66}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;padding:15px}
-.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,.15)}
-.card img{width:100%;height:180px;object-fit:cover}
-.card-content{padding:12px;text-align:center}
-.card-content h3{font-size:20px}
-.card-content p{color:#0b2c66;font-weight:bold;margin:8px 0}
-.order{background:#0b2c66;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;display:inline-block}
-.payment,.admin{background:#fff;margin:20px;padding:20px;border-radius:18px;box-shadow:0 5px 15px rgba(0,0,0,.1)}
-.payment-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;text-align:center;font-weight:bold}
-.admin input{width:100%;padding:12px;margin:8px 0;border:1px solid #ccc;border-radius:8px}
-.admin button{width:100%;padding:12px;background:green;color:#fff;border:none;border-radius:8px}
-footer{background:#0b2c66;color:#fff;text-align:center;padding:20px;margin-top:20px}
+header p{margin-top:6px;font-size:16px}
+.topbtn{
+display:inline-block;
+margin-top:15px;
+padding:12px 25px;
+background:#25D366;
+color:white;
+text-decoration:none;
+border-radius:10px;
+font-weight:bold;
+}
+.section-title{
+text-align:center;
+font-size:28px;
+font-weight:bold;
+margin:25px 0;
+color:#0b2c66;
+}
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+padding:15px;
+}
+.card{
+background:white;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+.card img{
+width:100%;
+height:190px;
+object-fit:cover;
+}
+.card-content{
+padding:12px;
+text-align:center;
+}
+.card-content h3{font-size:19px}
+.card-content p{
+color:#0b2c66;
+font-weight:bold;
+margin:8px 0;
+}
+.order,.del,.edit{
+display:inline-block;
+margin:4px;
+padding:7px 12px;
+border-radius:7px;
+text-decoration:none;
+color:white;
+font-size:13px;
+cursor:pointer;
+border:none;
+}
+.order{background:#0b2c66}
+.del{background:red}
+.edit{background:orange}
+.box{
+background:white;
+margin:20px;
+padding:20px;
+border-radius:18px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+.payment-list{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+text-align:center;
+font-weight:bold;
+}
+.box input{
+width:100%;
+padding:12px;
+margin:8px 0;
+border:1px solid #ccc;
+border-radius:8px;
+}
+.box button.upload{
+width:100%;
+padding:12px;
+background:green;
+color:white;
+border:none;
+border-radius:8px;
+font-size:16px;
+}
+footer{
+background:#0b2c66;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:20px;
+}
 </style>
 </head>
 <body>
@@ -35,14 +123,14 @@ footer{background:#0b2c66;color:#fff;text-align:center;padding:20px;margin-top:2
 <p>Owner: HAMZA BAKARI KHAMIS</p>
 <p>Email: hamzabakari203@gmail.com</p>
 <p>WhatsApp: +255 694 120 621</p>
-<a href="https://wa.me/255694120621" class="btn">TOA ODA SASA</a>
+<a href="https://wa.me/255694120621" class="topbtn">TOA ODA SASA</a>
 </header>
 
 <div class="section-title">BIDHAA ZETU</div>
 <section class="products" id="products"></section>
 
-<section class="payment">
-<h2 class="section-title" style="margin:0 0 15px 0;font-size:24px">NJIA ZA MALIPO</h2>
+<section class="box">
+<h2 class="section-title" style="font-size:24px;margin:0 0 15px 0">NJIA ZA MALIPO</h2>
 <div class="payment-list">
 <div>M-PESA</div>
 <div>TIGO PESA</div>
@@ -50,50 +138,109 @@ footer{background:#0b2c66;color:#fff;text-align:center;padding:20px;margin-top:2
 <div>HALOPESA</div>
 <div>CRDB BANK</div>
 <div>NMB BANK</div>
+<div>TPB BANK</div>
+<div>VISA CARD</div>
 </div>
 </section>
 
-<section class="admin">
-<h2 class="section-title" style="margin:0 0 15px 0;font-size:24px">UPLOAD BIDHAA MPYA</h2>
+<section class="box">
+<h2 class="section-title" style="font-size:24px;margin:0 0 15px 0">ADMIN PANEL YA BIDHAA</h2>
 <p style="text-align:center;margin-bottom:10px">Password: Kilimanjaro12</p>
 <input type="password" id="pass" placeholder="Weka Password ya Admin">
 <input type="text" id="pname" placeholder="Jina la Bidhaa">
 <input type="text" id="pprice" placeholder="Bei ya Bidhaa">
-<input type="file" id="pimage">
-<button onclick="addProduct()">UPLOAD BIDHAA</button>
+<input type="file" id="pimage" multiple>
+<button class="upload" onclick="addProduct()">UPLOAD BIDHAA</button>
 </section>
 
 <footer>© 2026 MINI MARKET ONLINE | HAMZA BAKARI KHAMIS</footer>
 
 <script>
-let defaultProducts=[
-['Friji','850000','https://picsum.photos/400/300?11'],
-['Television','600000','https://picsum.photos/400/300?12'],
-['Nguo za Kisasa','35000','https://picsum.photos/400/300?13'],
-['Viatu','50000','https://picsum.photos/400/300?14'],
-['Mikoba','45000','https://picsum.photos/400/300?15'],
-['Mapazia','70000','https://picsum.photos/400/300?16']
+let productsData = JSON.parse(localStorage.getItem("hamza_products")) || [
+{name:'Friji',price:'850000',img:'https://picsum.photos/400/300?11'},
+{name:'Television',price:'600000',img:'https://picsum.photos/400/300?12'},
+{name:'Nguo za Kisasa',price:'35000',img:'https://picsum.photos/400/300?13'},
+{name:'Viatu vya Fashion',price:'50000',img:'https://picsum.photos/400/300?14'},
+{name:'Mikoba na Mabegi',price:'45000',img:'https://picsum.photos/400/300?15'},
+{name:'Mapazia na Mashuka',price:'70000',img:'https://picsum.photos/400/300?16'},
+{name:'Vyombo vya Nyumbani',price:'40000',img:'https://picsum.photos/400/300?17'},
+{name:'Rice Cooker',price:'120000',img:'https://picsum.photos/400/300?18'},
+{name:'Blender',price:'90000',img:'https://picsum.photos/400/300?19'}
 ];
 
-function loadDefaults(){
-let products=document.getElementById('products');
-defaultProducts.forEach(function(p){
-products.innerHTML += '<div class=\"card\"><img src=\"'+p[2]+'\"><div class=\"card-content\"><h3>'+p[0]+'</h3><p>TZS '+p[1]+'</p><a class=\"order\" href=\"https://wa.me/255694120621\">AGIZA</a></div></div>';
+function saveProducts(){
+localStorage.setItem("hamza_products", JSON.stringify(productsData));
+}
+
+function renderProducts(){
+let box=document.getElementById("products");
+box.innerHTML='';
+productsData.forEach((p,index)=>{
+box.innerHTML += `
+<div class="card">
+<img src="${p.img}">
+<div class="card-content">
+<h3>${p.name}</h3>
+<p>TZS ${p.price}</p>
+<a href="https://wa.me/255694120621" class="order">AGIZA</a>
+<button class="edit" onclick="editProduct(${index})">BADILI</button>
+<button class="del" onclick="deleteProduct(${index})">FUTA</button>
+</div>
+</div>`;
 });
 }
-loadDefaults();
+renderProducts();
 
 function addProduct(){
-if(document.getElementById('pass').value!=='Kilimanjaro12'){alert('Password sio sahihi');return;}
-let name=document.getElementById('pname').value;
-let price=document.getElementById('pprice').value;
-let image=document.getElementById('pimage').files[0];
-if(name==''||price==''||!image){alert('Jaza taarifa zote');return;}
+let pass=document.getElementById("pass").value.trim();
+if(pass!=="Kilimanjaro12"){alert("Password sio sahihi");return;}
+
+let name=document.getElementById("pname").value;
+let price=document.getElementById("pprice").value;
+let files=document.getElementById("pimage").files;
+
+if(name==''||price==''||files.length==0){alert("Jaza taarifa zote");return;}
+
+for(let i=0;i<files.length;i++){
 let reader=new FileReader();
 reader.onload=function(e){
-document.getElementById('products').innerHTML += '<div class=\"card\"><img src=\"'+e.target.result+'\"><div class=\"card-content\"><h3>'+name+'</h3><p>TZS '+price+'</p><a class=\"order\" href=\"https://wa.me/255694120621\">AGIZA</a></div></div>';
+productsData.push({
+name:name+" "+(i+1),
+price:price,
+img:e.target.result
+});
+saveProducts();
+renderProducts();
 }
-reader.readAsDataURL(image);
+reader.readAsDataURL(files[i]);
+}
+
+document.getElementById("pname").value='';
+document.getElementById("pprice").value='';
+document.getElementById("pimage").value='';
+}
+
+function deleteProduct(index){
+let pass=prompt("Weka Password Kufuta");
+if(pass!=="Kilimanjaro12"){alert("Password sio sahihi");return;}
+productsData.splice(index,1);
+saveProducts();
+renderProducts();
+}
+
+function editProduct(index){
+let pass=prompt("Weka Password Kubadili");
+if(pass!=="Kilimanjaro12"){alert("Password sio sahihi");return;}
+
+let newName=prompt("Badili Jina la Bidhaa",productsData[index].name);
+let newPrice=prompt("Badili Bei ya Bidhaa",productsData[index].price);
+
+if(newName!=null && newPrice!=null){
+productsData[index].name=newName;
+productsData[index].price=newPrice;
+saveProducts();
+renderProducts();
+}
 }
 </script>
 
