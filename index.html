@@ -1,1 +1,286 @@
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAMZA BAKARI KHAMIS ONLINE SHOP</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+<style>
+body{
+font-family:Arial;
+margin:0;
+padding:0;
+background:#f3f3f3;
+color:#222;
+}
+header{
+background:#111;
+color:white;
+padding:40px 20px;
+text-align:center;
+}
+.slider{
+font-size:30px;
+font-weight:bold;
+min-height:40px;
+margin-bottom:10px;
+}
+.contact{
+font-size:16px;
+}
+.section{
+padding:20px;
+}
+.admin,.order,.payment,.about,.reviews,.location{
+background:white;
+margin:20px 0;
+padding:20px;
+border-radius:15px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+.categories{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+gap:15px;
+margin-top:20px;
+}
+.catbtn{
+background:#222;
+color:white;
+border:none;
+padding:20px;
+border-radius:15px;
+font-size:18px;
+cursor:pointer;
+}
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-top:20px;
+}
+.card{
+background:white;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 2px 10px rgba(0,0,0,0.15);
+}
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+.info{
+padding:15px;
+}
+button{
+padding:10px 15px;
+margin:4px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+background:#111;
+color:white;
+}
+input,select{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:1px solid #ccc;
+border-radius:10px;
+}
+.hidden{
+display:none;
+}
+h2{
+margin-top:0;
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="slider" id="sliderText">KARIBU HAMZA ONLINE SHOP</div>
+<h1>HAMZA BAKARI KHAMIS ONLINE SHOP</h1>
+<div class="contact">+255 694 120 621 | hamzabakari203@gmail.com</div>
+</header>
+
+<div class="section">
+
+<div class="admin">
+<h2><i class="fa fa-lock"></i> Admin Login</h2>
+<input type="password" id="adminPass" placeholder="Weka Password">
+<button onclick="loginAdmin()">Login</button>
+
+<div id="adminPanel" class="hidden">
+<h3>Upload Picha Nyingi za Bidhaa</h3>
+<select id="categorySelect">
+<option>Vyombo</option>
+<option>Mikoba</option>
+<option>Umeme</option>
+<option>Mapazia</option>
+<option>Urembo</option>
+</select>
+
+<input type="file" id="fileInput" multiple onchange="uploadImages()">
+</div>
+</div>
+
+<h2>Makundi ya Bidhaa</h2>
+
+<div class="categories">
+<button class="catbtn" onclick="showCategory('Vyombo')">Vyombo</button>
+<button class="catbtn" onclick="showCategory('Mikoba')">Mikoba</button>
+<button class="catbtn" onclick="showCategory('Umeme')">Umeme</button>
+<button class="catbtn" onclick="showCategory('Mapazia')">Mapazia</button>
+<button class="catbtn" onclick="showCategory('Urembo')">Urembo</button>
+</div>
+
+<div id="products" class="products"></div>
+HTML
+<div class="order">
+<h2>Order Form</h2>
+<input type="text" placeholder="Jina lako">
+<input type="text" placeholder="Namba yako">
+<input type="text" placeholder="Bidhaa unayotaka">
+<input type="text" placeholder="Kiasi">
+<button>Tuma Order</button>
+<button onclick="window.location.href='https://wa.me/255694120621'">WhatsApp Order</button>
+</div>
+
+<div class="payment">
+<h2>Chagua Mtandao wa Malipo</h2>
+<button>M-Pesa</button>
+<button>Tigo Pesa</button>
+<button>Airtel Money</button>
+<button>HaloPesa</button>
+<button>Mixx by Yas</button>
+<p>Lipa kwenda: +255 694 120 621</p>
+</div>
+
+<div class="about">
+<h2>About Our Business</h2>
+<p>Tunauza bidhaa bora za nyumbani, fashion, electronics na urembo kwa bei nafuu sana.</p>
+</div>
+
+<div class="reviews">
+<h2>Customer Reviews</h2>
+<p>⭐⭐⭐⭐⭐ Huduma nzuri sana.</p>
+<p>⭐⭐⭐⭐⭐ Bidhaa bora na salama.</p>
+</div>
+
+<div class="location">
+<h2>Location</h2>
+<p>Dar es Salaam, Tanzania</p>
+</div>
+
+</div>
+
+<script>
+const slides = [
+'KARIBU HAMZA ONLINE SHOP',
+'BIDHAA ZA UBORA WA JUU',
+'AGIZA KWA URAHISI POPOTE ULIPO'
+];
+
+let slideIndex = 0;
+
+setInterval(function(){
+slideIndex = (slideIndex + 1) % slides.length;
+document.getElementById('sliderText').innerText = slides[slideIndex];
+},3000);
+
+const adminPassword = 'kilimanjaro12';
+let adminLogged = false;
+
+const products = {
+Vyombo:[
+{name:'Seti ya Sahani',price:'Tsh 45,000',img:'https://images.unsplash.com/photo-1509440159596-0249088772ff'}
+],
+Mikoba:[
+{name:'Mkoba wa Kisasa',price:'Tsh 30,000',img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff'}
+],
+Umeme:[
+{name:'Blender',price:'Tsh 65,000',img:'https://images.unsplash.com/photo-1586201375761-83865001e31c'}
+],
+Mapazia:[
+{name:'Pazia la Sebuleni',price:'Tsh 55,000',img:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85'}
+],
+Urembo:[
+{name:'Flower Vase',price:'Tsh 25,000',img:'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b'}
+]
+};
+
+let current = 'Vyombo';
+
+function loginAdmin(){
+if(document.getElementById('adminPass').value === adminPassword){
+adminLogged = true;
+document.getElementById('adminPanel').classList.remove('hidden');
+alert('Admin umeingia');
+}else{
+alert('Password sio sahihi');
+}
+}
+  HTML
+function showCategory(cat){
+current = cat;
+renderProducts();
+}
+
+function renderProducts(){
+const box = document.getElementById('products');
+box.innerHTML = '';
+
+products[current].forEach(function(p,i){
+box.innerHTML += `
+<div class="card">
+<img src="${p.img}">
+<div class="info">
+<h3>${p.name}</h3>
+<p>${p.price}</p>
+${adminLogged ? `<button onclick="editProduct(${i})">Edit</button><button onclick="deleteProduct(${i})">Delete</button>` : ''}
+<button>Order</button>
+</div>
+</div>
+`;
+});
+}
+
+function uploadImages(){
+const files = document.getElementById('fileInput').files;
+const cat = document.getElementById('categorySelect').value;
+
+for(let file of files){
+products[cat].push({
+name:file.name,
+price:'Weka Bei',
+img:URL.createObjectURL(file)
+});
+}
+
+showCategory(cat);
+}
+
+function deleteProduct(i){
+products[current].splice(i,1);
+renderProducts();
+}
+
+function editProduct(i){
+let newName = prompt('Weka jina jipya',products[current][i].name);
+let newPrice = prompt('Weka bei mpya',products[current][i].price);
+
+if(newName){products[current][i].name = newName;}
+if(newPrice){products[current][i].price = newPrice;}
+
+renderProducts();
+}
+
+renderProducts();
+</script>
+
+</body>
+</html>
