@@ -8,7 +8,7 @@ HTML
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#edf1f5}
+body{background:#eef3f8}
 header{
 background:linear-gradient(45deg,#0b2c66,#1f56c7);
 color:white;
@@ -18,7 +18,7 @@ border-bottom-left-radius:25px;
 border-bottom-right-radius:25px;
 }
 header h1{font-size:34px}
-header p{margin-top:6px;font-size:16px}
+header p{margin-top:6px}
 .topbtn{
 display:inline-block;
 margin-top:15px;
@@ -31,10 +31,26 @@ font-weight:bold;
 }
 .section-title{
 text-align:center;
-font-size:30px;
+font-size:28px;
 font-weight:bold;
 margin:25px 0;
 color:#0b2c66;
+}
+.categories{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:15px;
+padding:15px;
+}
+.catbox{
+background:white;
+padding:20px;
+border-radius:18px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+cursor:pointer;
+font-weight:bold;
+font-size:18px;
 }
 .products{
 display:grid;
@@ -47,7 +63,6 @@ background:white;
 border-radius:18px;
 overflow:hidden;
 box-shadow:0 5px 15px rgba(0,0,0,.15);
-position:relative;
 }
 .card img{
 width:100%;
@@ -80,13 +95,12 @@ padding:20px;
 border-radius:18px;
 box-shadow:0 5px 15px rgba(0,0,0,.1);
 }
-.box input,.box textarea{
+.box input,.box select{
 width:100%;
 padding:12px;
 margin:8px 0;
 border:1px solid #ccc;
 border-radius:8px;
-font-size:15px;
 }
 .uploadbtn{
 width:100%;
@@ -103,15 +117,14 @@ grid-template-columns:repeat(2,1fr);
 gap:10px;
 text-align:center;
 font-weight:bold;
-font-size:18px;
 }
-.multiPreview{
+.preview{
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:8px;
 margin-top:10px;
 }
-.multiPreview img{
+.preview img{
 width:100%;
 height:80px;
 object-fit:cover;
@@ -136,7 +149,10 @@ margin-top:20px;
 <a href="https://wa.me/255694120621" class="topbtn">TOA ODA SASA</a>
 </header>
 
-<div class="section-title">BIDHAA ZETU</div>
+<div class="section-title">CHAGUA CATEGORY YA BIDHAA</div>
+<section class="categories" id="categoryArea"></section>
+
+<div class="section-title" id="openTitle">BIDHAA ZA CATEGORY</div>
 <section class="products" id="products"></section>
 
 <section class="box">
@@ -148,42 +164,72 @@ margin-top:20px;
 <div>HALOPESA</div>
 <div>CRDB BANK</div>
 <div>NMB BANK</div>
-<div>TPB BANK</div>
-<div>VISA / MASTER</div>
 </div>
 </section>
 
 <section class="box">
-<h2 class="section-title" style="font-size:24px;margin:0 0 10px 0">ADMIN PANEL YA BIDHAA</h2>
+<h2 class="section-title" style="font-size:24px;margin:0 0 10px 0">ADMIN PANEL</h2>
 <p style="text-align:center;margin-bottom:10px">Password: Kilimanjaro12</p>
-
 <input type="password" id="adminpass" placeholder="Weka Password ya Admin">
+
+<select id="categorySelect">
+<option value="">Chagua Category</option>
+<option>Dress</option>
+<option>Viatu</option>
+<option>Mikoba</option>
+<option>Fridge</option>
+<option>Television</option>
+<option>Mapazia</option>
+<option>Vyombo</option>
+</select>
+
 <input type="file" id="multiImages" multiple onchange="previewImages()">
-<div class="multiPreview" id="previewBox"></div>
+<div class="preview" id="previewBox"></div>
 <div id="dynamicInputs"></div>
-<button class="uploadbtn" onclick="uploadAllProducts()">SAVE BIDHAA ZOTE</button>
+<button class="uploadbtn" onclick="uploadProducts()">SAVE PRODUCTS</button>
 </section>
 
 <footer>© 2026 MINI MARKET ONLINE | HAMZA BAKARI KHAMIS</footer>
 
 <script>
-let productsData = JSON.parse(localStorage.getItem('hamza_store')) || [
-{name:'Nguo za Kike',price:'25000',img:'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=400&q=80'},
-{name:'Viatu vya Fashion',price:'50000',img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80'},
-{name:'Friji',price:'850000',img:'https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=400&q=80'},
-{name:'Television',price:'600000',img:'https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=400&q=80'},
-{name:'Mapazia',price:'70000',img:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=400&q=80'},
-{name:'Vyombo vya Nyumbani',price:'40000',img:'https://images.unsplash.com/photo-1516594798947-e65505dbb29d?auto=format&fit=crop&w=400&q=80'}
+let allProducts = JSON.parse(localStorage.getItem('hamza_collection')) || [
+{cat:'Dress',name:'Dress ya Kike',price:'25000',img:'https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=400&q=80'},
+{cat:'Viatu',name:'Viatu vya Fashion',price:'50000',img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80'},
+{cat:'Fridge',name:'Fridge kubwa',price:'850000',img:'https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=400&q=80'},
+{cat:'Television',name:'Smart TV',price:'600000',img:'https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=400&q=80'},
+{cat:'Mapazia',name:'Mapazia mazuri',price:'70000',img:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=400&q=80'},
+{cat:'Vyombo',name:'Set ya Sahani',price:'40000',img:'https://images.unsplash.com/photo-1516594798947-e65505dbb29d?auto=format&fit=crop&w=400&q=80'}
 ];
 
-function saveData(){
-localStorage.setItem('hamza_store',JSON.stringify(productsData));
+let currentCategory='Dress';
+
+function saveAll(){
+localStorage.setItem('hamza_collection',JSON.stringify(allProducts));
+}
+
+function showCategories(){
+let cats=['Dress','Viatu','Mikoba','Fridge','Television','Mapazia','Vyombo'];
+let area=document.getElementById('categoryArea');
+area.innerHTML='';
+cats.forEach(c=>{
+area.innerHTML += `<div class="catbox" onclick="openCategory('${c}')">${c}</div>`;
+});
+}
+showCategories();
+
+function openCategory(cat){
+currentCategory=cat;
+document.getElementById('openTitle').innerText='BIDHAA ZA '+cat.toUpperCase();
+renderProducts();
 }
 
 function renderProducts(){
 let area=document.getElementById('products');
 area.innerHTML='';
-productsData.forEach((p,index)=>{
+let filtered=allProducts.filter(p=>p.cat===currentCategory);
+
+filtered.forEach((p,index)=>{
+let realIndex=allProducts.indexOf(p);
 area.innerHTML += `
 <div class="card">
 <img src="${p.img}">
@@ -191,13 +237,13 @@ area.innerHTML += `
 <h3>${p.name}</h3>
 <p>TZS ${p.price}</p>
 <a href="https://wa.me/255694120621" class="orderbtn">AGIZA</a>
-<button class="editbtn" onclick="editProduct(${index})">BADILI</button>
-<button class="delbtn" onclick="deleteProduct(${index})">FUTA</button>
+<button class="editbtn" onclick="editProduct(${realIndex})">BADILI</button>
+<button class="delbtn" onclick="deleteProduct(${realIndex})">FUTA</button>
 </div>
 </div>`;
 });
 }
-renderProducts();
+openCategory('Dress');
 
 function previewImages(){
 let files=document.getElementById('multiImages').files;
@@ -214,22 +260,27 @@ preview.innerHTML += `<img src="${e.target.result}">`;
 reader.readAsDataURL(files[i]);
 
 dyn.innerHTML += `
-<input type="text" id="name${i}" placeholder="Jina la Bidhaa ya picha ${i+1}">
-<input type="text" id="price${i}" placeholder="Bei ya Bidhaa ya picha ${i+1}">
+<input type="text" id="name${i}" placeholder="Jina la Bidhaa ${i+1}">
+<input type="text" id="price${i}" placeholder="Bei ya Bidhaa ${i+1}">
 `;
 }
 }
   HTML
-function uploadAllProducts(){
+function uploadProducts(){
 let pass=document.getElementById('adminpass').value.trim();
 if(pass!=='Kilimanjaro12'){
 alert('Password sio sahihi');
 return;
 }
 
-let files=document.getElementById('multiImages').files;
+let category=document.getElementById('categorySelect').value;
+if(category===''){
+alert('Chagua category kwanza');
+return;
+}
 
-if(files.length==0){
+let files=document.getElementById('multiImages').files;
+if(files.length===0){
 alert('Chagua picha kwanza');
 return;
 }
@@ -238,20 +289,21 @@ for(let i=0;i<files.length;i++){
 let pname=document.getElementById('name'+i).value;
 let pprice=document.getElementById('price'+i).value;
 
-if(pname==''||pprice==''){
+if(pname===''||pprice===''){
 alert('Jaza jina na bei kwa picha zote');
 return;
 }
 
 let reader=new FileReader();
 reader.onload=function(e){
-productsData.push({
+allProducts.push({
+cat:category,
 name:pname,
 price:pprice,
 img:e.target.result
 });
-saveData();
-renderProducts();
+saveAll();
+if(currentCategory===category){renderProducts();}
 }
 reader.readAsDataURL(files[i]);
 }
@@ -259,6 +311,7 @@ reader.readAsDataURL(files[i]);
 document.getElementById('previewBox').innerHTML='';
 document.getElementById('dynamicInputs').innerHTML='';
 document.getElementById('multiImages').value='';
+document.getElementById('categorySelect').value='';
 }
 
 function deleteProduct(index){
@@ -267,8 +320,8 @@ if(pass!=='Kilimanjaro12'){
 alert('Password sio sahihi');
 return;
 }
-productsData.splice(index,1);
-saveData();
+allProducts.splice(index,1);
+saveAll();
 renderProducts();
 }
 
@@ -279,13 +332,13 @@ alert('Password sio sahihi');
 return;
 }
 
-let newName=prompt('Badili Jina la Bidhaa',productsData[index].name);
-let newPrice=prompt('Badili Bei ya Bidhaa',productsData[index].price);
+let newName=prompt('Badili Jina la Bidhaa',allProducts[index].name);
+let newPrice=prompt('Badili Bei ya Bidhaa',allProducts[index].price);
 
 if(newName!=null && newPrice!=null){
-productsData[index].name=newName;
-productsData[index].price=newPrice;
-saveData();
+allProducts[index].name=newName;
+allProducts[index].price=newPrice;
+saveAll();
 renderProducts();
 }
 }
