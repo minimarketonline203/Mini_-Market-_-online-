@@ -1,381 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sw">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MINI MARKET ONLINE</title>
+<title>HAMZA BUSINESS MARKETPLACE PRO 2026</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
-scroll-behavior:smooth;
-}
-body{
-background:#eef3f9;
-color:#222;
-}
-
-/* HEADER */
-header{
-background:linear-gradient(90deg,#005bea,#00c6fb);
-padding:20px;
-text-align:center;
-color:white;
-position:sticky;
-top:0;
-z-index:1000;
-box-shadow:0 5px 20px rgba(0,0,0,0.2);
-}
-header h1{
-font-size:34px;
-margin-bottom:10px;
-}
-.owner{
-font-size:14px;
-margin-bottom:12px;
-}
-nav{
-display:flex;
-justify-content:center;
-gap:12px;
-flex-wrap:wrap;
-}
-nav a{
-color:white;
-text-decoration:none;
-padding:10px 20px;
-background:rgba(255,255,255,0.2);
-border-radius:30px;
-font-weight:bold;
-transition:.3s;
-}
-nav a:hover{
-background:white;
-color:#0077ff;
-}
-
-/* HERO */
-.hero{
-height:320px;
-background:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80') center/cover;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:32px;
-font-weight:bold;
-color:white;
-text-shadow:2px 2px 10px black;
-}
-
-/* SEARCH */
-.search-box{
-padding:25px;
-text-align:center;
-background:white;
-}
-.search-box input{
-width:90%;
-max-width:550px;
-padding:16px;
-border:none;
-outline:none;
-border-radius:40px;
-font-size:18px;
-box-shadow:0 4px 15px rgba(0,0,0,0.15);
-}
-
-/* PRODUCTS */
-.products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:22px;
-padding:25px;
-}
-.card{
-background:white;
-border-radius:22px;
-overflow:hidden;
-box-shadow:0 5px 20px rgba(0,0,0,0.15);
-transition:.4s;
-position:relative;
-}
-.card:hover{
-transform:translateY(-10px);
-}
-.card img{
-width:100%;
-height:220px;
-object-fit:cover;
-}
-.card h3{
-padding:15px;
-font-size:23px;
-color:#0077ff;
-}
-.card p{
-padding:0 15px 15px;
-font-size:15px;
-color:#666;
-}
-.price{
-padding:0 15px;
-font-size:20px;
-font-weight:bold;
-color:green;
-}
-.btn{
-display:block;
-margin:15px;
-padding:12px;
-text-align:center;
-background:#0077ff;
-color:white;
-text-decoration:none;
-border-radius:30px;
-font-weight:bold;
-}
-.btn:hover{
-background:#0052cc;
-}
-.deleteBtn{
-display:none;
-margin:0 15px 15px;
-padding:10px;
-background:red;
-color:white;
-border:none;
-width:calc(100% - 30px);
-border-radius:25px;
-font-weight:bold;
-cursor:pointer;
-}
-
-/* ABOUT */
-.about{
-background:white;
-margin:25px;
-padding:30px;
-border-radius:20px;
-box-shadow:0 5px 20px rgba(0,0,0,0.1);
-text-align:center;
-}
-.about h2{
-font-size:30px;
-color:#0077ff;
-margin-bottom:15px;
-}
-.about p{
-font-size:18px;
-line-height:1.7;
-}
-
-/* FOOTER */
-footer{
-background:#0077ff;
-color:white;
-text-align:center;
-padding:25px;
-margin-top:30px;
-line-height:1.8;
-}
-
-/* WHATSAPP */
-.whatsapp{
-position:fixed;
-bottom:18px;
-right:18px;
-background:#25D366;
-color:white;
-font-size:30px;
-padding:18px;
-border-radius:50%;
-text-decoration:none;
-box-shadow:0 5px 15px rgba(0,0,0,0.3);
-z-index:999;
-}
-
-/* SECRET ADMIN */
-#adminToggle{
-position:fixed;
-left:10px;
-bottom:20px;
-background:#111;
-color:#111;
-padding:8px;
-border-radius:50%;
-font-size:8px;
-cursor:pointer;
-z-index:999;
-}
-#adminPanel{
-display:none;
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:white;
-padding:25px;
-width:90%;
-max-width:400px;
-box-shadow:0 5px 30px rgba(0,0,0,0.3);
-border-radius:20px;
-z-index:2000;
-}
-#adminPanel input{
-width:100%;
-padding:12px;
-margin:8px 0;
-border:1px solid #ccc;
-border-radius:10px;
-}
-#adminPanel button{
-width:100%;
-padding:12px;
-background:#0077ff;
-color:white;
-border:none;
-border-radius:10px;
-font-weight:bold;
-cursor:pointer;
-margin-top:10px;
-}
+body{margin:0;font-family:Arial;background:#f4f7fb;color:#222}
+header{background:#083b8a;color:#fff;padding:20px;text-align:center;font-size:28px;font-weight:bold}
+nav{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;background:#fff;padding:15px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+nav a{text-decoration:none;color:#083b8a;font-weight:bold}
+section{padding:30px}
+.hero{text-align:center;background:#dcecff}
+input,textarea,select{width:100%;padding:12px;margin:8px 0;border:1px solid #ccc;border-radius:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:#fff;padding:15px;border-radius:15px;box-shadow:0 2px 10px rgba(0,0,0,.1);text-align:center}
+.card img{width:100%;height:160px;object-fit:cover;border-radius:10px}
+button,.btn{background:#0a7d2b;color:#fff;padding:10px 15px;border:none;border-radius:8px;text-decoration:none;cursor:pointer;display:inline-block;margin-top:8px}
+.adminbox,.formbox,.paybox{background:#fff;padding:20px;border-radius:15px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+footer{background:#083b8a;color:#fff;text-align:center;padding:20px}
+.whatsapp{position:fixed;bottom:20px;right:20px;background:green;color:#fff;padding:18px;border-radius:50%;font-size:25px}
+.hidden{display:none}
 </style>
 </head>
 <body>
-
-<header>
-<h1>MINI MARKET ONLINE</h1>
-<div class="owner">Owner: HAMZA BAKARI KHAMIS</div>
+<header>HAMZA BUSINESS MARKETPLACE PRO 2026</header>
 <nav>
-<a href="#home">Home</a>
-<a href="#products">Products</a>
+<a href="#home">Nyumbani</a>
+<a href="#products">Bidhaa</a>
+<a href="#vendors">Maduka</a>
 <a href="#about">About</a>
-<a href="https://wa.me/255694120621?text=Hello Mini Market Online, I need help">WhatsApp</a>
+<a href="#order">Toa Oda</a>
+<a href="#settings">Settings</a>
+<a href="#admin">Admin</a>
 </nav>
-</header>
 
 <section class="hero" id="home">
-SHOP SMART • SHOP FAST
+<h2>Tunapokea Oda Nchi Zote za Afrika Mashariki</h2>
+<p>Tanzania | Kenya | Uganda | Rwanda | Burundi | Congo</p>
+<input type="text" id="search" placeholder="Tafuta bidhaa..." onkeyup="searchProducts()">
 </section>
 
-<section class="search-box">
-<input type="text" id="searchInput" onkeyup="searchProduct()" placeholder="Search Products / Tafuta Bidhaa...">
-</section>
-
-<section class="products" id="products">
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab" alt="">
-<h3>Fashion Clothes / Nguo</h3>
-<div class="price">TZS 25,000</div>
-<p>Quality clothes for men and women available.</p>
-<a class="btn" href="https://wa.me/255694120621?text=Nahitaji Nguo">Order Now</a>
-<button class="deleteBtn" onclick="deleteCard(this)">DELETE PRODUCT</button>
+<section id="products">
+<h2>Bidhaa Za HAMZA BAKARI KHAMIS</h2>
+<div class="grid" id="productGrid">
+<div class="card"><img src="https://via.placeholder.com/200"><h3>Nguo za aina zote</h3><p>TZS 20,000+</p><a class="btn" href="https://wa.me/255694120621">Oda Haraka</a></div>
+<div class="card"><img src="https://via.placeholder.com/200"><h3>Vyombo vya kupikia na kulia</h3><p>TZS 35,000+</p><a class="btn" href="https://wa.me/255694120621">Oda Haraka</a></div>
+<div class="card"><img src="https://via.placeholder.com/200"><h3>Viatu vya aina zote</h3><p>TZS 40,000+</p><a class="btn" href="https://wa.me/255694120621">Oda Haraka</a></div>
+<div class="card"><img src="https://via.placeholder.com/200"><h3>Mapazia na Mashuka</h3><p>TZS 30,000+</p><a class="btn" href="https://wa.me/255694120621">Oda Haraka</a></div>
+<div class="card"><img src="https://via.placeholder.com/200"><h3>Mikanda</h3><p>TZS 15,000+</p><a class="btn" href="https://wa.me/255694120621">Oda Haraka</a></div>
+<div class="card"><img src="https://via.placeholder.com/200"><h3>TV, Radio, Fridge, Blender, Feni</h3><p>TZS 45,000+</p><a class="btn" href="https://wa.me/255694120621">Oda Haraka</a></div>
 </div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff" alt="">
-<h3>Shoes / Viatu</h3>
-<div class="price">TZS 40,000</div>
-<p>All types of modern shoes available.</p>
-<a class="btn" href="https://wa.me/255694120621?text=Nahitaji Viatu">Order Now</a>
-<button class="deleteBtn" onclick="deleteCard(this)">DELETE PRODUCT</button>
-</div>
-
 </section>
 
-<section class="about" id="about">
-<h2>ABOUT MINI MARKET ONLINE</h2>
-<p>
-Mini Market Online is your trusted online shopping center.<br><br>
-Owner: HAMZA BAKARI KHAMIS<br>
-Phone: +255 694 120 621<br>
-Email: hamzabakari203@gmail.com
-</p>
+<section id="vendors">
+<h2>Maduka ya Wafanyabiashara Wengine (100+ Slots)</h2>
+<div class="paybox">
+<h3>LIPIA TZS 10,000 KUTANGAZA DUKA LAKO</h3>
+<p>Tangazo litadumu kwa siku 3 tu kisha utalipia tena.</p>
+<p>M-Pesa | TigoPesa | AirtelMoney | HaloPesa | Bank Transfer</p>
+<button onclick="alert('Wasiliana na Admin kuthibitisha malipo: +255694120621')">Lipia Sasa</button>
+</div>
+<div class="grid">
+<div class="card"><img src="https://via.placeholder.com/200"><h3>Amina Fashion</h3><p>Shop Active</p></div>
+<div class="card"><img src="https://via.placeholder.com/200"><h3>Juma Electronics</h3><p>Shop Active</p></div>
+<div class="card"><img src="https://via.placeholder.com/200"><h3>Vendor Space Available</h3><p>Jiunge sasa</p></div>
+</div>
+</section>
+
+<section id="about">
+<h2>Kuhusu Sisi</h2>
+<p>Hii ni marketplace kubwa ya biashara mtandaoni inayomilikiwa na HAMZA BAKARI KHAMIS. Wafanyabiashara wanaweza kutangaza maduka yao na bidhaa zao baada ya kulipa TZS 10,000 kwa siku 3.</p>
+<p><b>Owner:</b> HAMZA BAKARI KHAMIS</p>
+<p><b>WhatsApp:</b> +255 694 120 621</p>
+<p><b>Email:</b> hamzabakari@gmail.com</p>
+</section>
+
+<section id="order">
+<h2>Toa Oda Haraka</h2>
+<div class="formbox">
+<input placeholder="Jina lako">
+<input placeholder="Namba yako">
+<input placeholder="Bidhaa unayotaka">
+<textarea placeholder="Maelezo ya oda"></textarea>
+<button onclick="window.location.href='https://wa.me/255694120621'">Tuma Oda WhatsApp</button>
+</div>
+</section>
+
+<section id="settings">
+<h2>Settings</h2>
+<div class="grid">
+<div class="card">Language: Kiswahili / English</div>
+<div class="card">Dark / Light Mode</div>
+<div class="card">Notifications</div>
+</div>
+</section>
+
+<section id="admin">
+<h2>Admin Password Protected</h2>
+<div class="adminbox">
+<input type="password" id="pass" placeholder="Weka Password">
+<button onclick="loginAdmin()">Ingia Admin</button>
+<div id="panel" class="hidden">
+<h3>Karibu Admin Hamza</h3>
+<button onclick="alert('Ongeza Duka Mpya')">Ongeza Duka</button>
+<button onclick="alert('Futa Duka Lililoisha')">Futa Duka</button>
+<button onclick="alert('Ongeza Bidhaa')">Ongeza Bidhaa</button>
+<button onclick="alert('Futa Bidhaa')">Futa Bidhaa</button>
+<button onclick="alert('Angalia Malipo ya Vendors')">Angalia Malipo</button>
+</div>
+</div>
 </section>
 
 <footer>
-© 2026 MINI MARKET ONLINE • ALL RIGHTS RESERVED<br>
-Owner: HAMZA BAKARI KHAMIS<br>
-Phone: +255 694 120 621<br>
-Email: hamzabakari203@gmail.com
+HAMZA BAKARI KHAMIS | WhatsApp +255694120621 | Email: hamzabakari@gmail.com
 </footer>
-
-<a class="whatsapp" href="https://wa.me/255694120621?text=Hello Mini Market Online">
-<i class="fab fa-whatsapp"></i>
-</a>
-
-<div id="adminToggle" onclick="openAdmin()">●</div>
-
-<div id="adminPanel">
-<h3>SECRET ADMIN PANEL</h3>
-<input type="text" id="pname" placeholder="Product Name">
-<input type="text" id="pprice" placeholder="Product Price">
-<input type="text" id="pimg" placeholder="Product Image URL">
-<input type="text" id="pdesc" placeholder="Product Description">
-<button onclick="addProduct()">ADD PRODUCT</button>
-</div>
+<a class="whatsapp" href="https://wa.me/255694120621"><i class="fab fa-whatsapp"></i></a>
 
 <script>
-function searchProduct() {
-let input = document.getElementById("searchInput").value.toLowerCase();
-let cards = document.getElementsByClassName("card");
-for (let i = 0; i < cards.length; i++) {
-let title = cards[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
-cards[i].style.display = title.indexOf(input) > -1 ? "block" : "none";
+function loginAdmin(){
+ if(document.getElementById('pass').value==='kilimanjaro12'){
+   document.getElementById('panel').classList.remove('hidden');
+   alert('Admin Login Successful');
+ } else { alert('Password sio sahihi');}
 }
-}
-
-function openAdmin(){
-let pass = prompt("Enter Admin Password");
-if(pass === 'Kilimanjaro12"'){
-document.getElementById("adminPanel").style.display="block";
-let dels = document.getElementsByClassName("deleteBtn");
-for(let i=0;i<dels.length;i++){dels[i].style.display="block";}
-}else{
-alert("Wrong Password");
-}
-}
-
-function addProduct(){
-let name = document.getElementById("pname").value;
-let price = document.getElementById("pprice").value;
-let img = document.getElementById("pimg").value;
-let desc = document.getElementById("pdesc").value;
-
-let product = `
-<div class="card">
-<img src="${img}">
-<h3>${name}</h3>
-<div class="price">${price}</div>
-<p>${desc}</p>
-<a class="btn" href="https://wa.me/255694120621?text=Nahitaji ${name}">Order Now</a>
-<button class="deleteBtn" onclick="deleteCard(this)" style="display:block;">DELETE PRODUCT</button>
-</div>`;
-
-document.getElementById("products").innerHTML += product;
-saveProducts();
-}
-
-function deleteCard(btn){
-btn.parentElement.remove();
-saveProducts();
-}
-
-function saveProducts(){
-localStorage.setItem("productsData", document.getElementById("products").innerHTML);
-}
-
-window.onload = function(){
-if(localStorage.getItem("productsData")){
-document.getElementById("products").innerHTML = localStorage.getItem("productsData");
-}
+function searchProducts(){
+ let input=document.getElementById('search').value.toLowerCase();
+ let cards=document.querySelectorAll('#productGrid .card');
+ cards.forEach(c=>{c.style.display=c.innerText.toLowerCase().includes(input)?'block':'none';});
 }
 </script>
-
 </body>
 </html>
