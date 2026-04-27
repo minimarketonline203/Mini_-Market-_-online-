@@ -1,1 +1,116 @@
 
+html
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Market Online</title>
+    <style>
+        /* Rangi na Muundo wa Jumla */
+        :root {
+            --njano: #FFD700;
+            --nyeusi: #1a1a1a;
+            --nyeupe: #ffffff;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--nyeupe); color: var(--nyeusi); }
+        
+        /* Header */
+        header { background-color: var(--nyeusi); color: var(--njano); padding: 30px 10px; text-align: center; }
+        header h1 { margin: 0; font-size: 28px; text-transform: uppercase; letter-spacing: 2px; }
+        header p { margin: 5px 0 0; font-size: 14px; color: var(--nyeupe); }
+
+        /* Welcome Banner */
+        .banner { background-color: var(--njano); color: var(--nyeusi); padding: 15px; text-align: center; font-weight: bold; font-size: 14px; border-bottom: 2px solid var(--nyeusi); }
+
+        /* Grid ya Bidhaa */
+        .container { padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: auto; }
+        
+        /* Kadi ya Bidhaa */
+        .card { background: white; border: 1px solid #ddd; border-radius: 12px; overflow: hidden; transition: 0.3s; position: relative; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        
+        .img-placeholder { width: 100%; height: 250px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; font-style: italic; color: #888; }
+        
+        .details { padding: 15px; text-align: left; }
+        .details h3 { margin: 0 0 10px; font-size: 20px; color: var(--nyeusi); }
+        .details p { margin: 5px 0; color: #555; font-size: 14px; }
+        .price { font-size: 22px; font-weight: bold; color: #e67e22; margin: 10px 0; }
+
+        /* Kitufe cha WhatsApp */
+        .btn-wa { display: block; background-color: var(--nyeusi); color: var(--njano); text-align: center; padding: 12px; text-decoration: none; font-weight: bold; border-radius: 0 0 12px 12px; transition: 0.3s; }
+        .btn-wa:hover { background-color: var(--njano); color: var(--nyeusi); }
+
+        /* Footer */
+        footer { background-color: var(--nyeusi); color: var(--nyeupe); text-align: center; padding: 30px 10px; margin-top: 40px; border-top: 5px solid var(--njano); }
+        .contact-info { font-size: 14px; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>MINI MARKET ONLINE</h1>
+    <p>Nguo, Viatu, Vyombo na Mashuka ya Kisasa</p>
+</header>
+
+<div class="banner">
+    ✨ Karibu Hamza Online Shop - Bidhaa Bora kwa Bei Nafuu! ✨
+</div>
+
+<div class="container">
+    <!-- Bidhaa 1 -->
+    <div class="card">
+        <div class="img-placeholder">Picha ya Dress hapa</div>
+        <div class="details">
+            <h3>Dress za Kisasa</h3>
+            <p>Size: M - XXL</p>
+            <div class="price">20,000 TZS</div>
+        </div>
+        <a href="https://wa.me" class="btn-wa">AGIZA KWA WHATSAPP</a>
+    </div>
+
+    <!-- Bidhaa 2 -->
+    <div class="card">
+        <div class="img-placeholder">Picha ya Suruali hapa</div>
+        <div class="details">
+            <h3>Suruali (Jeans & Kadeti)</h3>
+            <p>Size: 30 - 38</p>
+            <div class="price">15,000 TZS</div>
+        </div>
+        <a href="https://wa.me" class="btn-wa">AGIZA KWA WHATSAPP</a>
+    </div>
+
+    <!-- Bidhaa 3 -->
+    <div class="card">
+        <div class="img-placeholder">Picha ya TV hapa</div>
+        <div class="details">
+            <h3>Digital TV - 32 Inch</h3>
+            <p>Full HD | HDMI | USB</p>
+            <div class="price">170,000 TZS</div>
+        </div>
+        <a href="https://wa.me" class="btn-wa">AGIZA KWA WHATSAPP</a>
+    </div>
+
+    <!-- Bidhaa 4 -->
+    <div class="card">
+        <div class="img-placeholder">Picha ya Shati hapa</div>
+        <div class="details">
+            <h3>Shati za Kiume</h3>
+            <p>Size: L - XXL</p>
+            <div class="price">Bei: Taja</div>
+        </div>
+        <a href="https://wa.me" class="btn-wa">AGIZA KWA WHATSAPP</a>
+    </div>
+</div>
+
+<footer>
+    <div class="contact-info">
+        <p><b>Hamza Bakari Khamis</b></p>
+        <p>📞 +255 694 120 621</p>
+        <p>📧 hamzabakari203@gmail.com</p>
+        <p>📍 Tunatuma bidhaa popote Tanzania</p>
+    </div>
+</footer>
+
+</body>
+</html>
