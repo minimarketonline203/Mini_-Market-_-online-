@@ -1,266 +1,160 @@
-[4/27, 9:48 AM] Hamza: import React, { useState, useEffect } from "react";
-import { Search, ShoppingCart, Settings, Globe, Phone, Mail, Store, User, Lock, PlusCircle, Trash2, Menu, X, CreditCard } from "lucide-react";
+import { useState } from 'react';
 
-export default function HamzaBusinessMarketplace() {
-const [language, setLanguage] = useState("sw");
-const [search, setSearch] = useState("");
-const [menuOpen, setMenuOpen] = useState(false);
-const [adminOpen, setAdminOpen] = useState(false);
-const [adminPassword, setAdminPassword] = useState("");
-const [adminLogged, setAdminLogged] = useState(false);
-const [vendors, setVendors] = useState([
-{name:"Amina Fashion", paid:true, expiry:"2026-04-30", products:[
-{name:"Nguo za watoto", price:"25000", image:"https://via.placeholder.com/150"},
-{name:"Viatu vya kike", price:"30000", image:"https://via.placeholder.com/150"}
-]},
-{name:"Juma Electronics", paid:true, expiry:"2026-04-29", products:[
-{name:"Television", price:"450000", image:"https://via.placeholder.com/150"},
-{name:"Blender", price:"65000", image:"https://via.placeholder.com/150"}
-]}
-]);
+export default function MiniMarketOnline(){
+  const [products,setProducts] = useState([
+    {name:'Friji',price:'850000',image:'https://picsum.photos/500/350?1'},
+    {name:'Television',price:'600000',image:'https://picsum.photos/500/350?2'},
+    {name:'Nguo za Kike',price:'35000',image:'https://picsum.photos/500/350?3'},
+    {name:'Viatu vya Kisasa',price:'50000',image:'https://picsum.photos/500/350?4'},
+    {name:'Mikoba',price:'45000',image:'https://picsum.photos/500/350?5'},
+    {name:'Mapazia',price:'70000',image:'https://picsum.photos/500/350?6'},
+    {name:'Rice Cooker',price:'120000',image:'https://picsum.photos/500/350?7'},
+    {name:'Blender',price:'90000',image:'https://picsum.photos/500/350?8'},
+    {name:'Sahani Set',price:'40000',image:'https://picsum.photos/500/350?9'}
+  ]);
 
-const [ownerProducts, setOwnerProducts] = useState([
-{name:"Nguo za aina zote", price:"20000", image:"https://via.placeholder.com/150"},
-{name:"Vyombo vya kupikia", price:"35000", image:"https://via.placeholder.com/150"},
-{name:"Viatu vya wakubwa na watoto", price:"40000", image:"https://via.placeholder.com/150"},
-{name:"Mapazia na mashuka", price:"30000", image:"https://via.placeholder.com/150"},
-{name:"Mikanda", price:"15000", image:"https://via.placeholder.com/150"},
-{name:"Fridge", price:"600000", image:"https://via.placeholder.com/150"},
-{name:"Radio", price:"45000", image:"https://via.placeholder.com/150"},
-{name:"Subwoofer", price:"120000", image:"https://via.placeholder.com/150"}
-]);
+  const [logged,setLogged]=useState(false);
+  const [pass,setPass]=useState('');
+  const [newName,setNewName]=useState('');
+  const [newPrice,setNewPrice]=useState('');
+  const [newImage,setNewImage]=useState(null);
 
-useEffect(()=>{
-const today = new Date().toISOString().split("T")[0];
-setVendors(prev=>prev.map(v=>({...v, paid: v.expiry >= today })));
-},[]);
+  const loginAdmin=()=>{
+    if(pass==='Kilimanjaro12'){
+      setLogged(true);
+    }else{
+      alert('Password sio sahihi');
+    }
+  }
 
-const text = {
-sw:{
-title:"HAMZA BUSINESS MARKETPLACE",
-home:"Nyumbani",
-about:"Kuhusu Sisi",
-vendors:"Maduka",
-order:"Toa Oda",
-settings:"Mipangilio",
-search:"Tafuta bidhaa...",
-admin:"Admin Login",
-pay:"Lipa TZS 10,000 Kutangaza Siku 3",
-east:"Tunapokea oda nchi zote za Afrika Mashariki",
-aboutText:"Hii ni marketplace ya kisasa inayomilikiwa na HAMZA BAKARI KHAMIS kwa ajili ya kutangaza na kuuza bidhaa za maduka mbalimbali.",
-contact:"Mmiliki: HAMZA BAKARI KHAMIS | WhatsApp: +255 694 120 621 | Email: hamzabakari@gmail.com",
-quick:"Oda Haraka WhatsApp",
-vendorPay:"Lipia Duka Lako",
-login:"Ingia",
-pass:"Weka Password",
-addVendor:"Ongeza Duka",
-remove:"Futa",
-lang:"English"
-},
-en:{
-title:"HAMZA BUSINESS MARKETPLACE",
-home:"Home",
-about:"About Us",
-vendors:"Stores",
-order:"Quick Order",
-settings:"Settings",
-search:"Search products...",
-admin:"Admin Login",
-pay:"Pay TZS 10,000 Advertise For 3 Days",
-east:"We receive orders across East Africa",
-aboutText:"This is a modern marketplace owned by HAMZA BAKARI KHAMIS for advertising and selling products from multiple stores.",
-contact:"Owner: HAMZA BAKARI KHAMIS | WhatsApp: +255 694 120 621 | Email: hamzabakari@gmail.com",
-quick:"Quick WhatsApp Order",
-vendorPay:"Pay For Your Shop",
-login:"Login",
-pass:"Enter Password",
-addVendor:"Add Store",
-remove:"Delete",
-lang:"Kiswahili"
-}
-};
+  const addProduct=()=>{
+    if(newName && newPrice && newImage){
+      setProducts([
+        ...products,
+        {
+          name:newName,
+          price:newPrice,
+          image:URL.createObjectURL(newImage)
+        }
+      ]);
+      setNewName('');
+      setNewPrice('');
+      setNewImage(null);
+      document.getElementById('fileUpload').value='';
+    }else{
+      alert('Jaza taarifa zote');
+    }
+  }
 
-const t = text[language];
+  return (
+    <div className='min-h-screen bg-gray-100 font-sans'>
+      <header className='bg-blue-900 text-white text-center p-8 shadow-xl'>
+        <h1 className='text-4xl font-bold'>MINI MARKET ONLINE</h1>
+        <p className='mt-3 text-xl'>Owner: HAMZA BAKARI KHAMIS</p>
+        <p className='text-lg'>Email: hamzabakari203@gmail.com</p>
+        <p className='text-lg'>WhatsApp: +255 694 120 621</p>
 
-const loginAdmin = ()=>{
-if(adminPassword==="kilimanjaro12"){
-setAdminLogged(true);
-alert("Admin Logged In");
-}else{
-alert("Wrong Password");
-}
-};
+        <a
+          href='https://wa.me/255694120621'
+          className='inline-block mt-5 bg-green-600 px-8 py-3 rounded-2xl text-xl'
+        >
+          TOA ODA SASA
+        </a>
+      </header>
 
-const addOwnerProduct = ()=>{
-const n = prompt("Product name");
-const p = prompt("Price");
-const i = prompt("Image URL");
-if(n && p){
-setOwnerProducts([...ownerProducts,{name:n,price:p,image:i || "https://via.placeholder.com/150"}]);
-}
-};
+      <section className='p-8'>
+        <h2 className='text-3xl font-bold text-center mb-8'>BIDHAA ZETU</h2>
+        <div className='grid md:grid-cols-3 gap-6'>
+          {products.map((p,i)=>(
+            <div key={i} className='bg-white rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition'>
+              <img src={p.image} className='w-full h-64 object-cover'/>
+              <div className='p-4'>
+                <h3 className='text-2xl font-bold'>{p.name}</h3>
+                <p className='text-blue-800 text-xl font-semibold'>TZS {p.price}</p>
+                <a
+                  href='https://wa.me/255694120621'
+                  className='inline-block mt-3 bg-blue-900 text-white px-5 py-2 rounded-xl'
+                >
+                  AGIZA SASA
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+      <section className='bg-white p-8 mt-8 shadow'>
+        <h2 className='text-3xl font-bold text-center mb-6'>NJIA ZA MALIPO TANZANIA</h2>
+        <div className='grid md:grid-cols-4 gap-4 text-center text-lg font-bold'>
+          <div>M-PESA</div>
+          <div>TIGO PESA</div>
+          <div>AIRTEL MONEY</div>
+          <div>HALOPESA</div>
+          <div>CRDB BANK</div>
+          <div>NMB BANK</div>
+          <div>TPB BANK</div>
+          <div>VISA / MASTER CARD</div>
+        </div>
+      </section>
 
-const deleteOwnerProduct = (index)=>{
-setOwnerProducts(ownerProducts.filter((_,i)=>i!==index));
-};
+      <section className='bg-gray-200 p-8 mt-8'>
+        <h2 className='text-3xl font-bold text-center mb-6'>ADMIN PANEL YA KUBADILI BIDHAA</h2>
 
-const addVendor = ()=>{
-const n = prompt("Vendor Name");
-if(n){
-const exp = new Date();
-exp.setDate(exp.getDate()+3);
-setVendors([...vendors,{name:n,paid:true,expiry:exp.toISOString().split("T")[0],products:[]}]);
-}
-};
+        {!logged ? (
+          <div className='text-center'>
+            <input
+              type='password'
+              placeholder='Weka Password ya Admin'
+              value={pass}
+              onChange={(e)=>setPass(e.target.value)}
+              className='p-3 rounded-xl w-72 border'
+            />
+            <br/>
 
-const deleteVendor = (index)=>{
-setVendors(vendors.filter((_,i)=>i!==index));
-};
+            <button
+              onClick={loginAdmin}
+              className='bg-blue-900 text-white px-8 py-3 rounded-xl mt-4'
+            >
+              LOGIN
+            </button>
+          </div>
+        ):(
+          <div className='max-w-xl mx-auto bg-white p-6 rounded-2xl shadow-xl'>
+            <input
+              type='text'
+              placeholder='Jina la Bidhaa'
+              value={newName}
+              onChange={(e)=>setNewName(e.target.value)}
+              className='w-full p-3 border mb-3'
+            />
 
-return (
-<div className="min-h-screen bg-gray-100">
-<header className="bg-blue-900 text-white p-4 flex justify-between items-center">
-<h1 className="text-2xl font-bold">{t.title}</h1>
-<div className="flex gap-3">
-<button onClick={()=>setLanguage(language==="sw"?"en":"sw")}><Globe/></button>
-<button onClick={()=>setMenuOpen(!menuOpen)}>{menuOpen?<X/>:<Menu/>}</button>
-</div>
-</header>
+            <input
+              type='text'
+              placeholder='Bei ya Bidhaa'
+              value={newPrice}
+              onChange={(e)=>setNewPrice(e.target.value)}
+              className='w-full p-3 border mb-3'
+            />
 
-{menuOpen && (
-<nav className="bg-white shadow p-4 flex flex-col gap-3 text-lg">
-<a href="#home">{t.home}</a>
-<a href="#about">{t.about}</a>
-<a href="#vendors">{t.vendors}</a>
-<a href="#order">{t.order}</a>
-<a href="#settings">{t.settings}</a>
-<a href="#admin">{t.admin}</a>
-</nav>
-)}
+            <input
+              id='fileUpload'
+              type='file'
+              accept='image/*,video/*'
+              onChange={(e)=>setNewImage(e.target.files[0])}
+              className='w-full p-3 border mb-3'
+            />
 
-<section id="home" className="p-6 text-center">
-<h2 className="text-3xl font-bold mb-3">{t.east}</h2>
-<div className="flex justify-center items-center gap-2 bg-white p-3 rounded-xl shadow">
-<Search/>
-<input value={search} onChange={(e)=>setSearch(e.target.value)} placeholder={t.search} className="outline-none w-full"/>
-</div>
-</section>
-
-<section className="p-6">
-<h2 className="text-2xl font-bold mb-4">OWNER PRODUCTS</h2>
-<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-{ownerProducts.filter(p=>p.name.toLowerCase().includes(search.toLowerCase())).map((p,i)=>(
-<div key={i} className="bg-white rounded-2xl shadow p-3">
-<img src={p.image} className="w-full h-32 object-cover rounded-xl"/>
-<h3 className="font-bold mt-2">{p.name}</h3>
-<p>TZS {p.price}</p>
-<a href='https://wa.me/255694120621' className='bg-green-500 text-white px-3 py-1 rounded-lg inline-block mt-2'>{t.quick}</a>
-{adminLogged && <button onClick={()=>deleteOwnerProduct(i)} className='block mt-2 text-red-600'><Trash2/></button>}
-</div>
-))}
-</div>
-{adminLogged && <button onClick={addOwnerProduct} className="mt-4 bg-blue-700 text-white px-4 py-2 rounded-xl flex gap-2"><PlusCircle/>Add Product</button>}
-</section>
-[4/27, 9:49 AM] Hamza: <section id="vendors" className="p-6 bg-gray-200">
-<h2 className="text-2xl font-bold mb-4">{t.vendors}</h2>
-
-<div className="mb-6 bg-yellow-100 p-4 rounded-2xl shadow">
-<h3 className="text-xl font-bold mb-2">{t.vendorPay}</h3>
-<p>{t.pay}</p>
-<div className="grid md:grid-cols-5 grid-cols-2 gap-3 mt-4">
-<button className="bg-blue-600 text-white p-2 rounded-xl">M-PESA</button>
-<button className="bg-green-600 text-white p-2 rounded-xl">TIGO PESA</button>
-<button className="bg-red-600 text-white p-2 rounded-xl">AIRTEL MONEY</button>
-<button className="bg-purple-600 text-white p-2 rounded-xl">HALOPESA</button>
-<button className="bg-gray-700 text-white p-2 rounded-xl">BANK TRANSFER</button>
-</div>
-<p className="mt-3">Baada ya malipo shop yako itafunguliwa kwa siku 3.</p>
-</div>
-
-<div className="grid md:grid-cols-3 gap-5">
-{vendors.map((vendor,vi)=> vendor.paid && (
-<div key={vi} className="bg-white rounded-2xl shadow p-4">
-<h3 className="text-xl font-bold flex items-center gap-2"><Store/> {vendor.name}</h3>
-<p>Expiry: {vendor.expiry}</p>
-
-<div className="grid grid-cols-2 gap-3 mt-3">
-{vendor.products.length===0 ? <p>No Products Yet</p> :
-vendor.products.map((prod,pi)=>(
-<div key={pi} className="border rounded-xl p-2">
-<img src={prod.image} className="w-full h-24 object-cover rounded-lg"/>
-<p>{prod.name}</p>
-<p>TZS {prod.price}</p>
-<a href='https://wa.me/255694120621' className='bg-green-500 text-white px-2 py-1 rounded-lg inline-block mt-1'>Order</a>
-</div>
-))
-}
-</div>
-
-{adminLogged && <button onClick={()=>deleteVendor(vi)} className="mt-3 text-red-600 flex gap-2"><Trash2/>{t.remove}</button>}
-</div>
-))}
-</div>
-
-{adminLogged && <button onClick={addVendor} className="mt-5 bg-blue-700 text-white px-4 py-2 rounded-xl flex gap-2"><PlusCircle/>{t.addVendor}</button>}
-</section>
-
-<section id="about" className="p-6 bg-white">
-<h2 className="text-2xl font-bold mb-3">{t.about}</h2>
-<p className="text-lg">{t.aboutText}</p>
-<p className="mt-4 font-bold">{t.contact}</p>
-</section>
-
-<section id="order" className="p-6 bg-gray-100">
-<h2 className="text-2xl font-bold mb-4">{t.order}</h2>
-<div className="bg-white p-5 rounded-2xl shadow flex flex-col gap-3">
-<input placeholder="Jina lako" className="p-3 border rounded-xl"/>
-<input placeholder="Namba yako" className="p-3 border rounded-xl"/>
-<input placeholder="Bidhaa unayotaka" className="p-3 border rounded-xl"/>
-<textarea placeholder="Maelezo ya oda..." className="p-3 border rounded-xl"></textarea>
-<a href="https://wa.me/255694120621" className="bg-green-600 text-white text-center p-3 rounded-xl">Tuma Oda WhatsApp</a>
-</div>
-</section>
-
-<section id="settings" className="p-6 bg-white">
-<h2 className="text-2xl font-bold mb-4 flex gap-2"><Settings/> {t.settings}</h2>
-<div className="grid md:grid-cols-3 gap-4">
-<div className="bg-gray-100 p-4 rounded-2xl shadow">Language Switch</div>
-<div className="bg-gray-100 p-4 rounded-2xl shadow">Notifications</div>
-<div className="bg-gray-100 p-4 rounded-2xl shadow">Dark / Light Mode</div>
-</div>
-</section>
-
-<section id="admin" className="p-6 bg-gray-200">
-<h2 className="text-2xl font-bold mb-4 flex gap-2"><Lock/> {t.admin}</h2>
-
-{!adminLogged ? (
-<div className="bg-white p-5 rounded-2xl shadow flex flex-col gap-3 md:w-1/2">
-<input
-type="password"
-value={adminPassword}
-onChange={(e)=>setAdminPassword(e.target.value)}
-placeholder={t.pass}
-className="p-3 border rounded-xl"
-/>
-<button onClick={loginAdmin} className="bg-blue-700 text-white p-3 rounded-xl">{t.login}</button>
-</div>
-):(
-<div className="bg-green-100 p-5 rounded-2xl shadow text-xl font-bold">
-ADMIN PANEL OPENED SUCCESSFULLY
-</div>
-)}
-</section>
-
-<footer className="bg-blue-900 text-white p-6 mt-10 text-center">
-<p>{t.contact}</p>
-<p>Email: hamzabakari@gmail.com</p>
-<p>East Africa Online Delivery Marketplace 2026</p>
-</footer>
-
-<a href="https://wa.me/255694120621" className="fixed bottom-5 right-5 bg-green-500 text-white p-4 rounded-full shadow-2xl">
-<Phone/>
-</a>
-
-</div>
-);
+            <button
+              onClick={addProduct}
+              className='bg-green-600 text-white px-8 py-3 rounded-xl'
+            >
+              UPLOAD BIDHAA MPYA
+            </button>
+          </div>
+        )}
+      </section>
+      <footer className='bg-blue-900 text-white text-center p-6 mt-8'>
+        © 2026 MINI MARKET ONLINE | HAMZA BAKARI KHAMIS
+      </footer>
+    </div>
+  );
 }
